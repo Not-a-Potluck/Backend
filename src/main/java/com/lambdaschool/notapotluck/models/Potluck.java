@@ -42,6 +42,15 @@ public class Potluck
     @JsonIgnoreProperties(value = "potluck", allowSetters = true)
     private List<Food> foods = new ArrayList<>();
 
+    /**
+     * A list of guests for this potluck
+     */
+    @OneToMany(mappedBy = "potluck",
+        cascade = CascadeType.ALL,
+        orphanRemoval = true)
+    @JsonIgnoreProperties(value = "potluck", allowSetters = true)
+    private List<Guest> guests = new ArrayList<>();
+
     public Potluck()
     {
     }

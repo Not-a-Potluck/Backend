@@ -21,8 +21,8 @@ public class Food
     private String imageurl;
 
     /**
-     Many to One relationship between foods and potlucks.
-     A potluck can have many foods.
+     * Many to One relationship between foods and potlucks.
+     * A potluck can have many foods.
      */
     @ManyToOne
     @JoinColumn(name = "potluckid", nullable = false)
