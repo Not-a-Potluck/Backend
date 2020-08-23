@@ -47,7 +47,7 @@ public class User
     public User(
         String username,
         String password,
-        @Email String primaryemail,
+        String primaryemail,
         String imageurl)
     {
         this.username = username;

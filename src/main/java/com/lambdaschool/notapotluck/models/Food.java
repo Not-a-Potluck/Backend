@@ -3,8 +3,8 @@ package com.lambdaschool.notapotluck.models;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "foods")
@@ -16,10 +16,6 @@ public class Food
 
     private String foodname;
 
-    private String description;
-
-    private String imageurl;
-
     /**
      * Many to One relationship between foods and potlucks.
      * A potluck can have many foods.
@@ -29,18 +25,36 @@ public class Food
     @JsonIgnoreProperties(value = "foods", allowSetters = true)
     private Potluck potluck;
 
+    /**
+     Many to One relationship between potlucks and users.
+     A guest can have many foods.
+     */
+    @ManyToOne
+    @JoinColumn(name = "guestid", nullable = false)
+    @JsonIgnoreProperties(value = "foods", allowSetters = true)
+    private Guest guest;
+
+    /**
+     * connects food to the potluck food combination
+     */
+    @OneToMany(mappedBy = "food",
+        cascade = CascadeType.ALL,
+        orphanRemoval = true)
+    @JsonIgnoreProperties(value = "food", allowSetters = true)
+    private Set<PotluckFoods> potlucks = new HashSet<>();
+
     public Food()
     {
     }
 
     public Food(
-        String foodname,
-        String description,
-        String imageurl)
+        Potluck potluck,
+        Guest guest,
+        String foodname)
     {
+        this.potluck = potluck;
+        this.guest = guest;
         this.foodname = foodname;
-        this.description = description;
-        this.imageurl = imageurl;
     }
 
     public long getFoodid()
@@ -63,26 +77,6 @@ public class Food
         this.foodname = foodname;
     }
 
-    public String getDescription()
-    {
-        return description;
-    }
-
-    public void setDescription(String description)
-    {
-        this.description = description;
-    }
-
-    public String getImageurl()
-    {
-        return imageurl;
-    }
-
-    public void setImageurl(String imageurl)
-    {
-        this.imageurl = imageurl;
-    }
-
     public Potluck getPotluck()
     {
         return potluck;
@@ -91,5 +85,25 @@ public class Food
     public void setPotluck(Potluck potluck)
     {
         this.potluck = potluck;
+    }
+
+    public Guest getGuest()
+    {
+        return guest;
+    }
+
+    public void setGuest(Guest guest)
+    {
+        this.guest = guest;
+    }
+
+    public Set<PotluckFoods> getPotlucks()
+    {
+        return potlucks;
+    }
+
+    public void setPotlucks(Set<PotluckFoods> potlucks)
+    {
+        this.potlucks = potlucks;
     }
 }

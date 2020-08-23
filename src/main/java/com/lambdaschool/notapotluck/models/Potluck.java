@@ -16,6 +16,8 @@ public class Potluck
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long potluckid;
 
+    private String eventname;
+
     private String date;
 
     private String time;
@@ -40,7 +42,7 @@ public class Potluck
         cascade = CascadeType.ALL,
         orphanRemoval = true)
     @JsonIgnoreProperties(value = "potluck", allowSetters = true)
-    private List<Food> foods = new ArrayList<>();
+    private List<Food> food = new ArrayList<>();
 
     /**
      * A list of guests for this potluck
@@ -51,16 +53,29 @@ public class Potluck
     @JsonIgnoreProperties(value = "potluck", allowSetters = true)
     private List<Guest> guests = new ArrayList<>();
 
+    /**
+     * connects potluck to the food potluck combination
+     */
+    @OneToMany(mappedBy = "potluck",
+        cascade = CascadeType.ALL,
+        orphanRemoval = true)
+    @JsonIgnoreProperties(value = "potluck", allowSetters = true)
+    private Set<PotluckFoods> foods = new HashSet<>();
+
     public Potluck()
     {
     }
 
     public Potluck(
+        User user,
+        String eventname,
         String date,
         String time,
         String location,
         String description)
     {
+        this.user = user;
+        this.eventname = eventname;
         this.date = date;
         this.time = time;
         this.location = location;
@@ -75,6 +90,16 @@ public class Potluck
     public void setPotluckid(long potluckid)
     {
         this.potluckid = potluckid;
+    }
+
+    public String getEventname()
+    {
+        return eventname;
+    }
+
+    public void setEventname(String eventname)
+    {
+        this.eventname = eventname;
     }
 
     public String getDate()
@@ -127,12 +152,32 @@ public class Potluck
         this.user = user;
     }
 
-    public List<Food> getFoods()
+    public List<Food> getFood()
+    {
+        return food;
+    }
+
+    public void setFood(List<Food> food)
+    {
+        this.food = food;
+    }
+
+    public List<Guest> getGuests()
+    {
+        return guests;
+    }
+
+    public void setGuests(List<Guest> guests)
+    {
+        this.guests = guests;
+    }
+
+    public Set<PotluckFoods> getFoods()
     {
         return foods;
     }
 
-    public void setFoods(List<Food> foods)
+    public void setFoods(Set<PotluckFoods> foods)
     {
         this.foods = foods;
     }
