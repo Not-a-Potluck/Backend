@@ -64,7 +64,7 @@ public class UserController
             HttpStatus.CREATED);
     }
 
-    // PUT http://localhost:2019/users/user/{id}
+    // PUT http://localhost:2019/users/user/{userid}
     @PutMapping(value = "/user/{userid}", consumes = "application/json")
     public ResponseEntity<?> updateFullUser(@Valid @RequestBody User updateUser,
                                             @PathVariable long userid)

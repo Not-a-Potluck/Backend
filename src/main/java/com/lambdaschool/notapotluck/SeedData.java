@@ -2,6 +2,7 @@ package com.lambdaschool.notapotluck;
 
 import com.lambdaschool.notapotluck.models.*;
 import com.lambdaschool.notapotluck.services.FoodService;
+import com.lambdaschool.notapotluck.services.PotluckService;
 import com.lambdaschool.notapotluck.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -22,6 +23,9 @@ public class SeedData implements CommandLineRunner
 {
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private PotluckService potluckService;
 
     @Autowired
     private FoodService foodService;

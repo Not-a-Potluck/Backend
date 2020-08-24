@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "guests")
@@ -38,15 +40,26 @@ public class Guest
     @JsonIgnoreProperties(value = "guests", allowSetters = true)
     private Potluck potluck;
 
+//    /**
+//     * connects guest to the potluck guest combination
+//     */
+//    @OneToMany(mappedBy = "guest",
+//        cascade = CascadeType.ALL,
+//        orphanRemoval = true)
+//    @JsonIgnoreProperties(value = "guest", allowSetters = true)
+//    private Set<PotluckGuests> potlucks = new HashSet<>();
+
     public Guest()
     {
     }
 
     public Guest(
+//        Potluck potluck,
         String fname,
         String lname,
         String primaryemail)
     {
+//        this.potluck = potluck;
         this.fname = fname;
         this.lname = lname;
         this.primaryemail = primaryemail;
