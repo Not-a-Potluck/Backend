@@ -35,19 +35,35 @@ public class SeedData implements CommandLineRunner
             "lauren@lauren.com",
             "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png");
 
-        Potluck p1 = new Potluck(u1,
-           "Lunch at Gasworks",
-           "09/01/2020",
-           "11:30am",
-           "Gasworks park",
-           "North side, look for red umbrella");
+        u1.getPotlucks()
+            .add(new Potluck(u1,
+            "Lunch at Gasworks",
+            "09/01/2020",
+            "11:30am",
+            "Gasworks park",
+            "North side, look for red umbrella"));
 
-        Potluck p2 = new Potluck(u1,
+        u1.getPotlucks()
+            .add(new Potluck(u1,
             "Halloween Party",
             "10/31/2020",
             "4:00pm",
             "1111 90th pl ne, Seattle WA",
-            "Black and orange balloons by gate");
+            "Black and orange balloons by gate"));
+
+//        Potluck p1 = new Potluck(u1,
+//           "Lunch at Gasworks",
+//           "09/01/2020",
+//           "11:30am",
+//           "Gasworks park",
+//           "North side, look for red umbrella");
+//
+//        Potluck p2 = new Potluck(u1,
+//            "Halloween Party",
+//            "10/31/2020",
+//            "4:00pm",
+//            "1111 90th pl ne, Seattle WA",
+//            "Black and orange balloons by gate");
 
 //        p1.getFoods().add(new PotluckFoods(p1, f2));
 //        p1.getFoods().add(new PotluckFoods(p1, f3));
@@ -63,12 +79,12 @@ public class SeedData implements CommandLineRunner
             "Emick",
             "diane@diane.com");
 
-        Food f1 = new Food(p1, g1, "pizza");
-        f1 = foodService.save(f1);
-        Food f2 = new Food(p1, g2,"wine");
-        f2 = foodService.save(f2);
-        Food f3 = new Food(p2, g3,"cheese board");
-        f3 = foodService.save(f3);
+//        Food f1 = new Food(p1, g1, "pizza");
+//        f1 = foodService.save(f1);
+//        Food f2 = new Food(p1, g2,"wine");
+//        f2 = foodService.save(f2);
+//        Food f3 = new Food(p2, g3,"cheese board");
+//        f3 = foodService.save(f3);
         userService.save(u1);
     }
 }

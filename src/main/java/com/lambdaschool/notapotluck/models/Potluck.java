@@ -152,15 +152,15 @@ public class Potluck
         this.user = user;
     }
 
-    public List<Food> getFood()
-    {
-        return food;
-    }
-
-    public void setFood(List<Food> food)
-    {
-        this.food = food;
-    }
+//    public List<Food> getFood()
+//    {
+//        return food;
+//    }
+//
+//    public void setFood(List<Food> food)
+//    {
+//        this.food = food;
+//    }
 
     public List<Guest> getGuests()
     {

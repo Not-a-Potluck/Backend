@@ -70,4 +70,51 @@ public class UserServiceImpl implements UserService
 
         return userrepos.save(newUser);
     }
+
+    @Transactional
+    @Override
+    public User update(User user, long id)
+    {
+        User currentUser = findUserById(id);
+
+//        if (helperFunctions.isAuthorizedToMakeChange(currentUser.getUsername()))
+//        {
+            if (user.getUsername() != null)
+            {
+                currentUser.setUsername(user.getUsername().toLowerCase());
+            }
+
+            if (user.getPassword() != null)
+            {
+                currentUser.setPassword(user.getPassword());
+            }
+
+            if (user.getPrimaryemail() != null)
+            {
+                currentUser.setPrimaryemail(user.getPrimaryemail().toLowerCase());
+            }
+
+            if (user.getPotlucks().size() > 0)
+            {
+                currentUser.getPotlucks().clear();
+                for (Potluck pe : user.getPotlucks())
+                {
+                    currentUser.getPotlucks()
+                        .add(new Potluck(currentUser,
+                            pe.getEventname(),
+                            pe.getDate(),
+                            pe.getTime(),
+                            pe.getLocation(),
+                            pe.getDescription()));
+                }
+            }
+
+            return userrepos.save(currentUser);
+//        } else
+//        {
+//            // note we should never get to this line but is needed for the compiler
+//            // to recognize that this exception can be thrown
+//            throw new ResourceNotFoundException("This user is not authorized to make change");
+//        }
+    }
 }

@@ -11,4 +11,6 @@ public interface UserService
     User findUserById(long id);
 
     User save(User user);
+
+    User update(User user, long id);
 }
