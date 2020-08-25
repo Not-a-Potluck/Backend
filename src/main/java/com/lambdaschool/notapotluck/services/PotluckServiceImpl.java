@@ -42,29 +42,18 @@ public class PotluckServiceImpl implements PotluckService
     public Potluck save(Potluck potluck)
     {
         Potluck newPotluck = new Potluck();
-
         if (potluck.getPotluckid() != 0)
         {
             potluckrepos.findById(potluck.getPotluckid())
                 .orElseThrow(() -> new EntityNotFoundException("Potluck id " + potluck.getPotluckid() + " not found!"));
             newPotluck.setPotluckid(potluck.getPotluckid());
         }
-
         newPotluck.setUser(potluck.getUser());
         newPotluck.setEventname(potluck.getEventname());
         newPotluck.setDate(potluck.getDate());
         newPotluck.setTime(potluck.getTime());
         newPotluck.setLocation(potluck.getLocation());
         newPotluck.setDescription(potluck.getDescription());
-
-        newPotluck.getFoods().clear();
-        for (PotluckFoods fe : potluck.getFoods())
-        {
-            newPotluck.getFoods()
-                .add(new PotluckFoods(newPotluck,
-                    fe.getFood(),
-                    fe.getPotluckguest()));
-        }
 
         newPotluck.getGuests().clear();
         for (PotluckGuests ge : potluck.getGuests())
@@ -73,9 +62,63 @@ public class PotluckServiceImpl implements PotluckService
                 .add(new PotluckGuests(newPotluck,
                     ge.getGuest()));
         }
+        newPotluck.getFoods().clear();
+        for (PotluckFoods fe : potluck.getFoods())
+        {
+            PotluckGuests foodBringingGuest = new PotluckGuests();
+            foodBringingGuest = null;
+            for (PotluckGuests plg : newPotluck.getGuests())
+            {
+                if (plg.equals(fe.getPotluckguest()))
+                    foodBringingGuest = plg;
+            }
 
+            newPotluck.getFoods()
+                .add(new PotluckFoods(newPotluck,
+                    fe.getFood(), foodBringingGuest));
+            ;
+        }
         return potluckrepos.save(newPotluck);
     }
+//    @Transactional
+//    @Override
+//    public Potluck save(Potluck potluck)
+//    {
+//        Potluck newPotluck = new Potluck();
+//
+//        if (potluck.getPotluckid() != 0)
+//        {
+//            potluckrepos.findById(potluck.getPotluckid())
+//                .orElseThrow(() -> new EntityNotFoundException("Potluck id " + potluck.getPotluckid() + " not found!"));
+//            newPotluck.setPotluckid(potluck.getPotluckid());
+//        }
+//
+//        newPotluck.setUser(potluck.getUser());
+//        newPotluck.setEventname(potluck.getEventname());
+//        newPotluck.setDate(potluck.getDate());
+//        newPotluck.setTime(potluck.getTime());
+//        newPotluck.setLocation(potluck.getLocation());
+//        newPotluck.setDescription(potluck.getDescription());
+//
+//        newPotluck.getFoods().clear();
+//        for (PotluckFoods fe : potluck.getFoods())
+//        {
+//            newPotluck.getFoods()
+//                .add(new PotluckFoods(fe.getPotluck(),
+//                    fe.getFood(),
+//                    fe.getPotluckguest()));
+//        }
+//
+//        newPotluck.getGuests().clear();
+//        for (PotluckGuests ge : potluck.getGuests())
+//        {
+//            newPotluck.getGuests()
+//                .add(new PotluckGuests(ge.getPotluck(),
+//                    ge.getGuest()));
+//        }
+//
+//        return potluckrepos.save(newPotluck);
+//    }
 
     @Transactional
     @Override

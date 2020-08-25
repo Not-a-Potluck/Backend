@@ -95,6 +95,7 @@ public class PotluckFoods implements Serializable
         PotluckFoods that = (PotluckFoods) o;
         return ((potluck == null) ? 0 : potluck.getPotluckid()) == ((that.potluck == null) ? 0 : that.potluck.getPotluckid()) &&
             ((food == null) ? 0 : food.getFoodid()) == ((that.food == null) ? 0 : that.food.getFoodid());
+//            ((potluckguest == null) ? 0 : potluckguest.getPotluckfoodslist()) == ((that.potluckguest == null) ? 0 : that.potluckguest.getPotluckfoodslist());
     }
 
     @Override
