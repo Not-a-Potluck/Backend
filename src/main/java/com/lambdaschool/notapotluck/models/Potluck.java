@@ -8,6 +8,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "potluck")
+@JsonIgnoreProperties(value = {"hasvalueforishost"})
 public class Potluck
 {
     @Id
@@ -23,6 +24,10 @@ public class Potluck
     private String location;
 
     private String description;
+
+    @Transient
+    public boolean hasvalueforishost = false;
+    private boolean ishost;
 
     /**
      Many to One relationship between potlucks and users.
@@ -69,6 +74,7 @@ public class Potluck
         this.time = time;
         this.location = location;
         this.description = description;
+        this.ishost = false;
     }
 
     public long getPotluckid()
@@ -159,5 +165,16 @@ public class Potluck
     public void setGuests(Set<PotluckGuests> guests)
     {
         this.guests = guests;
+    }
+
+    public boolean isHost()
+    {
+        return ishost;
+    }
+
+    public void setHost(boolean host)
+    {
+        hasvalueforishost = true;
+        ishost = host;
     }
 }

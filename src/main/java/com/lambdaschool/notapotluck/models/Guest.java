@@ -39,6 +39,15 @@ public class Guest
     @JsonIgnoreProperties(value = "guest", allowSetters = true)
     private Set<PotluckGuests> potlucks = new HashSet<>();
 
+    /**
+     * connects guest to the guest food combination
+     */
+    @OneToMany(mappedBy = "guest",
+        cascade = CascadeType.ALL,
+        orphanRemoval = true)
+    @JsonIgnoreProperties(value = "guest", allowSetters = true)
+    private Set<GuestFoods> isbringing = new HashSet<>();
+
     public Guest()
     {
     }
@@ -125,5 +134,15 @@ public class Guest
     public void setPotlucks(Set<PotluckGuests> potlucks)
     {
         this.potlucks = potlucks;
+    }
+
+    public Set<GuestFoods> getIsbringing()
+    {
+        return isbringing;
+    }
+
+    public void setIsbringing(Set<GuestFoods> isbringing)
+    {
+        this.isbringing = isbringing;
     }
 }

@@ -8,6 +8,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "foods")
+@JsonIgnoreProperties(value = {"hasvalueforisclaimed"})
 public class Food
 {
     @Id
@@ -16,6 +17,15 @@ public class Food
     private long foodid;
 
     private String foodname;
+
+    @Transient
+    public boolean hasvalueforisclaimed = false;
+    private boolean isclaimed;
+
+//    @ManyToOne
+//    @JoinColumn(name = "guestid", nullable = false)
+//    @JsonIgnoreProperties(value = "foods", allowSetters = true)
+//    private Guest guest;
 
     /**
      * connects food to the potluck food combination
@@ -34,6 +44,7 @@ public class Food
         String foodname)
     {
         this.foodname = foodname;
+        this.isclaimed = false;
     }
 
     public long getFoodid()
@@ -64,5 +75,16 @@ public class Food
     public void setPotlucks(Set<PotluckFoods> potlucks)
     {
         this.potlucks = potlucks;
+    }
+
+    public boolean isClaimed()
+    {
+        return isclaimed;
+    }
+
+    public void setClaimed(boolean claimed)
+    {
+        hasvalueforisclaimed = true;
+        isclaimed = claimed;
     }
 }

@@ -15,6 +15,7 @@ public class FoodServiceImpl implements FoodService
     @Autowired
     FoodRespository foodrepos;
 
+    // fixme add update
     @Transactional
     @Override
     public Food save(Food food)
@@ -32,5 +33,21 @@ public class FoodServiceImpl implements FoodService
     public void deleteAll()
     {
         foodrepos.deleteAll();
+    }
+
+    @Override
+    public Food claim(long foodid, long guestid)
+    {
+        if (foodrepos.findById(foodid) == null)
+        {
+            throw EntityNotFoundException
+
+        }
+
+        if (foodrepos.findById(foodid) != null)
+        {
+
+        }
+
     }
 }

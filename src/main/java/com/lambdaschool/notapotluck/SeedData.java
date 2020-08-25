@@ -54,6 +54,7 @@ public class SeedData implements CommandLineRunner
             "Thilen",
             "alex@alex.com");
         g1 = guestService.save(g1);
+
         Guest g2 = new Guest("Adrienne",
             "Emick",
             "adrienne@adrienne.com");
@@ -68,6 +69,7 @@ public class SeedData implements CommandLineRunner
             "lauren@lauren.com",
             "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png");
         u1 = userService.save(u1);
+
 
         Set<PotluckFoods> potluckFoods = new HashSet<>();
         potluckFoods.add(new PotluckFoods(new Potluck(), f1));
@@ -86,16 +88,20 @@ public class SeedData implements CommandLineRunner
         p1 = potluckService.save(p1);
 
 
-//        Potluck p2 = new Potluck(u1,
-//            "Halloween Party",
-//            "10/31/2020",
-//            "4:00pm",
-//            "1111 90th pl ne, Seattle WA",
-//            "Black and orange balloons by gate");
-//        p2.getFoods()
-//            .add(new PotluckFoods(p2, f2));
-//        p2.getGuests()
-//            .add(new PotluckGuests(p2, g2));
-//        potluckService.save(p2);
+        potluckFoods = new HashSet<>();
+        potluckFoods.add(new PotluckFoods(new Potluck(), f2));
+
+        potluckGuests = new HashSet<>();
+        potluckGuests.add(new PotluckGuests(new Potluck(), g2));
+
+        Potluck p2 = new Potluck(u1,
+            "Halloween Party",
+            "10/31/2020",
+            "4:00pm",
+            "1111 90th pl ne, Seattle WA",
+            "Black and orange balloons by gate");
+        p2.setFoods(potluckFoods);
+        p2.setGuests(potluckGuests);
+        p2 = potluckService.save(p2);
     }
 }

@@ -7,4 +7,8 @@ public interface FoodService
     Food save(Food food);
 
     public void deleteAll();
+
+    Food claim(long foodid, long guestid);
+
+    Food unclaim(long foodid, long guestid);
 }

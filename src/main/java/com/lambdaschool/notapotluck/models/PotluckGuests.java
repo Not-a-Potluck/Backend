@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -30,6 +32,12 @@ public class PotluckGuests implements Serializable
     @JoinColumn(name = "guestid")
     @JsonIgnoreProperties(value = "potlucks", allowSetters = true)
     private Guest guest;
+
+    @ManyToOne
+    @JoinColumns({@JoinColumn(name = "foodid"),
+        @JoinColumn(name = "guestid")
+        })
+    private PotluckGuests pot
 
     public PotluckGuests()
     {
@@ -63,6 +71,16 @@ public class PotluckGuests implements Serializable
         this.guest = guest;
     }
 
+    public List<PotluckFoods> getPotluckfood()
+    {
+        return potluckfood;
+    }
+
+    public void setPotluckfood(List<PotluckFoods> potluckfood)
+    {
+        this.potluckfood = potluckfood;
+    }
+
     @Override
     public boolean equals(Object o)
     {
@@ -78,6 +96,7 @@ public class PotluckGuests implements Serializable
         PotluckGuests that = (PotluckGuests) o;
         return ((potluck == null) ? 0 : potluck.getPotluckid()) == ((that.potluck == null) ? 0 : that.potluck.getPotluckid()) &&
             ((guest == null) ? 0 : guest.getGuestid()) == ((that.guest == null) ? 0 : that.guest.getGuestid());
+//            ((potluckfood == null) ? 0 : potluckfood()) == ((that.guest == null) ? 0 : that.guest.getGuestid());
     }
 
     @Override

@@ -1,7 +1,6 @@
 package com.lambdaschool.notapotluck.controllers;
 
 import com.lambdaschool.notapotluck.models.Potluck;
-import com.lambdaschool.notapotluck.models.User;
 import com.lambdaschool.notapotluck.services.PotluckService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
