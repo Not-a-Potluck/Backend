@@ -3,17 +3,17 @@ package com.lambdaschool.notapotluck.models;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Table(name = "guests")
+@JsonIgnoreProperties(value = {"hasvalueforresponded","hasvalueforattending"})
 public class Guest
-//    implements Serializable
 {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @JsonIgnoreProperties("guestid")
     private long guestid;
 
     private String fname;
@@ -30,25 +30,6 @@ public class Guest
     public boolean hasvalueforattending = false;
     private boolean attending;
 
-//    /**
-//     * A foreign key to the potluck table
-//     * Many to One relationship between guests and potlucks.
-//     * A potluck can have many guests.
-//     */
-//    @ManyToOne
-//    @JoinColumn(name = "potluckid")
-//    @JsonIgnoreProperties(value = "guests", allowSetters = true)
-//    private Potluck potluck;
-//
-//    /**
-//     Many to One relationship between guests and potlucks.
-//     A potluck can have many guests.
-//     */
-//    @ManyToOne
-//    @JoinColumn(name = "guestid", nullable = false)
-//    @JsonIgnoreProperties(value = "foods", allowSetters = true)
-//    private Guest guest;
-
     /**
      * connects guest to the potluck guest combination
      */
@@ -63,12 +44,10 @@ public class Guest
     }
 
     public Guest(
-//        Potluck potluck,
         String fname,
         String lname,
         String primaryemail)
     {
-//        this.potluck = potluck;
         this.fname = fname;
         this.lname = lname;
         this.primaryemail = primaryemail;
@@ -137,16 +116,6 @@ public class Guest
         hasvalueforattending = true;
         this.attending = attending;
     }
-//
-//    public Potluck getPotluck()
-//    {
-//        return potluck;
-//    }
-//
-//    public void setPotluck(Potluck potluck)
-//    {
-//        this.potluck = potluck;
-//    }
 
     public Set<PotluckGuests> getPotlucks()
     {

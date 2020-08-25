@@ -1,8 +1,6 @@
 package com.lambdaschool.notapotluck.models;
 
-import javax.persistence.Embeddable;
 import java.io.Serializable;
-import java.util.Objects;
 
 public class PotluckGuestsId implements Serializable
 {

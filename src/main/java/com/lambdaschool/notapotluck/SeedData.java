@@ -10,7 +10,6 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.sound.sampled.Port;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -72,6 +71,10 @@ public class SeedData implements CommandLineRunner
 
         Set<PotluckFoods> potluckFoods = new HashSet<>();
         potluckFoods.add(new PotluckFoods(new Potluck(), f1));
+
+        Set<PotluckGuests> potluckGuests = new HashSet<>();
+        potluckGuests.add(new PotluckGuests(new Potluck(), g1));
+
         Potluck p1 = new Potluck(u1,
             "Lunch at Gasworks",
             "09/01/2020",
@@ -79,6 +82,7 @@ public class SeedData implements CommandLineRunner
             "Gasworks park",
             "North side, look for red umbrella");
         p1.setFoods(potluckFoods);
+        p1.setGuests(potluckGuests);
         p1 = potluckService.save(p1);
 
 

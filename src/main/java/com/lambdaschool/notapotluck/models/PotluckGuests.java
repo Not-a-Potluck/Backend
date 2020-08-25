@@ -70,7 +70,8 @@ public class PotluckGuests implements Serializable
         {
             return true;
         }
-        if (o == null || getClass() != o.getClass())
+//        if (o == null || getClass() != o.getClass())
+        if (!(o instanceof PotluckGuests))
         {
             return false;
         }
