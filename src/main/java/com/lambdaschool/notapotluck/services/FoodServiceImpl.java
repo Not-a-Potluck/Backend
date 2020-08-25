@@ -26,4 +26,11 @@ public class FoodServiceImpl implements FoodService
 
         return foodrepos.save(food);
     }
+
+    @Transactional
+    @Override
+    public void deleteAll()
+    {
+        foodrepos.deleteAll();
+    }
 }

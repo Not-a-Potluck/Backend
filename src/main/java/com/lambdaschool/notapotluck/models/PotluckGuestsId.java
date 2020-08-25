@@ -4,13 +4,13 @@ import javax.persistence.Embeddable;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class PotluckFoodsId implements Serializable
+public class PotluckGuestsId implements Serializable
 {
     private long potluck;
 
-    private long food;
+    private long guest;
 
-    public PotluckFoodsId()
+    public PotluckGuestsId()
     {
     }
 
@@ -24,14 +24,14 @@ public class PotluckFoodsId implements Serializable
         this.potluck = potluck;
     }
 
-    public long getFood()
+    public long getGuest()
     {
-        return food;
+        return guest;
     }
 
-    public void setFood(long food)
+    public void setGuest(long guest)
     {
-        this.food = food;
+        this.guest = guest;
     }
 
     @Override
@@ -45,14 +45,14 @@ public class PotluckFoodsId implements Serializable
         {
             return false;
         }
-        PotluckFoodsId that = (PotluckFoodsId) o;
+        PotluckGuestsId that = (PotluckGuestsId) o;
         return potluck == that.potluck &&
-            food == that.food;
+            guest == that.guest;
     }
 
     @Override
     public int hashCode()
     {
-        return 31;
+        return 37;
     }
 }

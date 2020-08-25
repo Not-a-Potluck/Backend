@@ -30,24 +30,33 @@ public class Guest
     public boolean hasvalueforattending = false;
     private boolean attending;
 
-    /**
-     * A foreign key to the potluck table
-     * Many to One relationship between guests and potlucks.
-     * A potluck can have many guests.
-     */
-    @ManyToOne
-    @JoinColumn(name = "potluckid")
-    @JsonIgnoreProperties(value = "guests", allowSetters = true)
-    private Potluck potluck;
-
 //    /**
-//     * connects guest to the potluck guest combination
+//     * A foreign key to the potluck table
+//     * Many to One relationship between guests and potlucks.
+//     * A potluck can have many guests.
 //     */
-//    @OneToMany(mappedBy = "guest",
-//        cascade = CascadeType.ALL,
-//        orphanRemoval = true)
-//    @JsonIgnoreProperties(value = "guest", allowSetters = true)
-//    private Set<PotluckGuests> potlucks = new HashSet<>();
+//    @ManyToOne
+//    @JoinColumn(name = "potluckid")
+//    @JsonIgnoreProperties(value = "guests", allowSetters = true)
+//    private Potluck potluck;
+//
+//    /**
+//     Many to One relationship between guests and potlucks.
+//     A potluck can have many guests.
+//     */
+//    @ManyToOne
+//    @JoinColumn(name = "guestid", nullable = false)
+//    @JsonIgnoreProperties(value = "foods", allowSetters = true)
+//    private Guest guest;
+
+    /**
+     * connects guest to the potluck guest combination
+     */
+    @OneToMany(mappedBy = "guest",
+        cascade = CascadeType.ALL,
+        orphanRemoval = true)
+    @JsonIgnoreProperties(value = "guest", allowSetters = true)
+    private Set<PotluckGuests> potlucks = new HashSet<>();
 
     public Guest()
     {
@@ -128,14 +137,24 @@ public class Guest
         hasvalueforattending = true;
         this.attending = attending;
     }
+//
+//    public Potluck getPotluck()
+//    {
+//        return potluck;
+//    }
+//
+//    public void setPotluck(Potluck potluck)
+//    {
+//        this.potluck = potluck;
+//    }
 
-    public Potluck getPotluck()
+    public Set<PotluckGuests> getPotlucks()
     {
-        return potluck;
+        return potlucks;
     }
 
-    public void setPotluck(Potluck potluck)
+    public void setPotlucks(Set<PotluckGuests> potlucks)
     {
-        this.potluck = potluck;
+        this.potlucks = potlucks;
     }
 }

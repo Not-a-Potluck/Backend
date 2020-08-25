@@ -4,11 +4,12 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Objects;
 
 @Entity
-@Table(name = "potluckfoods")
-@IdClass(PotluckFoodsId.class)
-public class PotluckFoods implements Serializable
+@Table(name = "potluckguests")
+@IdClass(PotluckGuestsId.class)
+public class PotluckGuests implements Serializable
 {
     /**
      * 1/2 of the primary key (long) for potluckfoods.
@@ -17,7 +18,7 @@ public class PotluckFoods implements Serializable
     @Id
     @ManyToOne
     @JoinColumn(name = "potluckid")
-    @JsonIgnoreProperties(value = "foods", allowSetters = true)
+    @JsonIgnoreProperties(value = "guests", allowSetters = true)
     private Potluck potluck;
 
     /**
@@ -26,20 +27,20 @@ public class PotluckFoods implements Serializable
      */
     @Id
     @ManyToOne
-    @JoinColumn(name = "foodid")
+    @JoinColumn(name = "guestid")
     @JsonIgnoreProperties(value = "potlucks", allowSetters = true)
-    private Food food;
+    private Guest guest;
 
-    public PotluckFoods()
+    public PotluckGuests()
     {
     }
 
-    public PotluckFoods(
+    public PotluckGuests(
         Potluck potluck,
-        Food food)
+        Guest guest)
     {
         this.potluck = potluck;
-        this.food = food;
+        this.guest = guest;
     }
 
     public Potluck getPotluck()
@@ -52,14 +53,14 @@ public class PotluckFoods implements Serializable
         this.potluck = potluck;
     }
 
-    public Food getFood()
+    public Guest getGuest()
     {
-        return food;
+        return guest;
     }
 
-    public void setFood(Food food)
+    public void setGuest(Guest guest)
     {
-        this.food = food;
+        this.guest = guest;
     }
 
     @Override
@@ -69,19 +70,18 @@ public class PotluckFoods implements Serializable
         {
             return true;
         }
-//        if (o == null || getClass() != o.getClass())
-        if (!(o instanceof PotluckFoods))
+        if (o == null || getClass() != o.getClass())
         {
             return false;
         }
-        PotluckFoods that = (PotluckFoods) o;
+        PotluckGuests that = (PotluckGuests) o;
         return ((potluck == null) ? 0 : potluck.getPotluckid()) == ((that.potluck == null) ? 0 : that.potluck.getPotluckid()) &&
-            ((food == null) ? 0 : food.getFoodid()) == ((that.food == null) ? 0 : that.food.getFoodid());
+            ((guest == null) ? 0 : guest.getGuestid()) == ((that.guest == null) ? 0 : that.guest.getGuestid());
     }
 
     @Override
     public int hashCode()
     {
-        return 31;
+        return 37;
     }
 }

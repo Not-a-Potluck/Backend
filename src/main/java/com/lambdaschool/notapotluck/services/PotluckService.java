@@ -16,4 +16,6 @@ public interface PotluckService
     Potluck update(Potluck potluck, long id);
 
     void delete(long id);
+
+    public void deleteAll();
 }

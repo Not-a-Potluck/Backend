@@ -73,7 +73,7 @@ public class User
 
     public void setUsername(String username)
     {
-        this.username = username;
+        this.username = username.toLowerCase();
     }
 
     public String getPassword()
@@ -93,7 +93,7 @@ public class User
 
     public void setPrimaryemail(String primaryemail)
     {
-        this.primaryemail = primaryemail;
+        this.primaryemail = primaryemail.toLowerCase();
     }
 
     public String getImageurl()

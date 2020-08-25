@@ -3,9 +3,7 @@ package com.lambdaschool.notapotluck.models;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -36,24 +34,6 @@ public class Potluck
     private User user;
 
     /**
-     * A list of foods for this potluck
-     */
-    @OneToMany(mappedBy = "potluck",
-        cascade = CascadeType.ALL,
-        orphanRemoval = true)
-    @JsonIgnoreProperties(value = "potluck", allowSetters = true)
-    private List<Food> food = new ArrayList<>();
-
-    /**
-     * A list of guests for this potluck
-     */
-    @OneToMany(mappedBy = "potluck",
-        cascade = CascadeType.ALL,
-        orphanRemoval = true)
-    @JsonIgnoreProperties(value = "potluck", allowSetters = true)
-    private List<Guest> guests = new ArrayList<>();
-
-    /**
      * connects potluck to the food potluck combination
      */
     @OneToMany(mappedBy = "potluck",
@@ -61,6 +41,15 @@ public class Potluck
         orphanRemoval = true)
     @JsonIgnoreProperties(value = "potluck", allowSetters = true)
     private Set<PotluckFoods> foods = new HashSet<>();
+
+    /**
+     * connects potluck to the guest potluck combination
+     */
+    @OneToMany(mappedBy = "potluck",
+        cascade = CascadeType.ALL,
+        orphanRemoval = true)
+    @JsonIgnoreProperties(value = "potluck", allowSetters = true)
+    private Set<PotluckGuests> guests = new HashSet<>();
 
     public Potluck()
     {
@@ -152,26 +141,6 @@ public class Potluck
         this.user = user;
     }
 
-//    public List<Food> getFood()
-//    {
-//        return food;
-//    }
-//
-//    public void setFood(List<Food> food)
-//    {
-//        this.food = food;
-//    }
-
-    public List<Guest> getGuests()
-    {
-        return guests;
-    }
-
-    public void setGuests(List<Guest> guests)
-    {
-        this.guests = guests;
-    }
-
     public Set<PotluckFoods> getFoods()
     {
         return foods;
@@ -180,5 +149,15 @@ public class Potluck
     public void setFoods(Set<PotluckFoods> foods)
     {
         this.foods = foods;
+    }
+
+    public Set<PotluckGuests> getGuests()
+    {
+        return guests;
+    }
+
+    public void setGuests(Set<PotluckGuests> guests)
+    {
+        this.guests = guests;
     }
 }

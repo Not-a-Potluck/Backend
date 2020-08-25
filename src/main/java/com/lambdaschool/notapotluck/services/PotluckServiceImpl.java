@@ -65,15 +65,13 @@ public class PotluckServiceImpl implements PotluckService
                     fe.getFood()));
         }
 
-//        newPotluck.getGuests().clear();
-//        for (Guest ge : potluck.getGuests())
-//        {
-//            newPotluck.getGuests()
-//                .add(new Guest(newPotluck,
-//                    ge.getFname(),
-//                    ge.getLname(),
-//                    ge.getPrimaryemail()));
-//        }
+        newPotluck.getGuests().clear();
+        for (PotluckGuests ge : potluck.getGuests())
+        {
+            newPotluck.getGuests()
+                .add(new PotluckGuests(newPotluck,
+                    ge.getGuest()));
+        }
 
         return potluckrepos.save(newPotluck);
     }
@@ -154,5 +152,12 @@ public class PotluckServiceImpl implements PotluckService
         potluckrepos.findById(id)
             .orElseThrow(() -> new EntityNotFoundException("Potluck id " + id + " not found!"));
         potluckrepos.deleteById(id);
+    }
+
+    @Transactional
+    @Override
+    public void deleteAll()
+    {
+        potluckrepos.deleteAll();
     }
 }

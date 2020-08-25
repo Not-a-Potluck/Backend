@@ -12,27 +12,10 @@ public class Food
 {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @JsonIgnoreProperties("foodid")
     private long foodid;
 
     private String foodname;
-
-    /**
-     * Many to One relationship between foods and potlucks.
-     * A potluck can have many foods.
-     */
-    @ManyToOne
-    @JoinColumn(name = "potluckid", nullable = false)
-    @JsonIgnoreProperties(value = "foods", allowSetters = true)
-    private Potluck potluck;
-
-    /**
-     Many to One relationship between potlucks and users.
-     A guest can have many foods.
-     */
-    @ManyToOne
-    @JoinColumn(name = "guestid", nullable = false)
-    @JsonIgnoreProperties(value = "foods", allowSetters = true)
-    private Guest guest;
 
     /**
      * connects food to the potluck food combination
@@ -48,12 +31,8 @@ public class Food
     }
 
     public Food(
-        Potluck potluck,
-        Guest guest,
         String foodname)
     {
-        this.potluck = potluck;
-        this.guest = guest;
         this.foodname = foodname;
     }
 
@@ -75,26 +54,6 @@ public class Food
     public void setFoodname(String foodname)
     {
         this.foodname = foodname;
-    }
-
-    public Potluck getPotluck()
-    {
-        return potluck;
-    }
-
-    public void setPotluck(Potluck potluck)
-    {
-        this.potluck = potluck;
-    }
-
-    public Guest getGuest()
-    {
-        return guest;
-    }
-
-    public void setGuest(Guest guest)
-    {
-        this.guest = guest;
     }
 
     public Set<PotluckFoods> getPotlucks()

@@ -2,6 +2,7 @@ package com.lambdaschool.notapotluck;
 
 import com.lambdaschool.notapotluck.models.*;
 import com.lambdaschool.notapotluck.services.FoodService;
+import com.lambdaschool.notapotluck.services.GuestService;
 import com.lambdaschool.notapotluck.services.PotluckService;
 import com.lambdaschool.notapotluck.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.sound.sampled.Port;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * SeedData puts both known and random data into the database. It implements CommandLineRunner.
@@ -30,65 +33,65 @@ public class SeedData implements CommandLineRunner
     @Autowired
     private FoodService foodService;
 
+    @Autowired
+    private GuestService guestService;
+
     @Transactional
     @Override
     public void run(String[] args) throws Exception
     {
+        potluckService.deleteAll();
+        foodService.deleteAll();
+        guestService.deleteAll();
+
+        Food f1 = new Food("pizza");
+        f1 = foodService.save(f1);
+        Food f2 = new Food("wine");
+        f2 = foodService.save(f2);
+        Food f3 = new Food("cheese board");
+        f3 = foodService.save(f3);
+
+        Guest g1 = new Guest("Alex",
+            "Thilen",
+            "alex@alex.com");
+        g1 = guestService.save(g1);
+        Guest g2 = new Guest("Adrienne",
+            "Emick",
+            "adrienne@adrienne.com");
+        g2 = guestService.save(g2);
+        Guest g3 = new Guest("Diane",
+            "Emick",
+            "diane@diane.com");
+        g3 = guestService.save(g3);
+
         User u1 = new User("laurenemick",
             "password",
             "lauren@lauren.com",
             "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png");
+        u1 = userService.save(u1);
 
-        u1.getPotlucks()
-            .add(new Potluck(u1,
+        Set<PotluckFoods> potluckFoods = new HashSet<>();
+        potluckFoods.add(new PotluckFoods(new Potluck(), f1));
+        Potluck p1 = new Potluck(u1,
             "Lunch at Gasworks",
             "09/01/2020",
             "11:30am",
             "Gasworks park",
-            "North side, look for red umbrella"));
+            "North side, look for red umbrella");
+        p1.setFoods(potluckFoods);
+        p1 = potluckService.save(p1);
 
-        u1.getPotlucks()
-            .add(new Potluck(u1,
-            "Halloween Party",
-            "10/31/2020",
-            "4:00pm",
-            "1111 90th pl ne, Seattle WA",
-            "Black and orange balloons by gate"));
 
-//        Potluck p1 = new Potluck(u1,
-//           "Lunch at Gasworks",
-//           "09/01/2020",
-//           "11:30am",
-//           "Gasworks park",
-//           "North side, look for red umbrella");
-//
 //        Potluck p2 = new Potluck(u1,
 //            "Halloween Party",
 //            "10/31/2020",
 //            "4:00pm",
 //            "1111 90th pl ne, Seattle WA",
 //            "Black and orange balloons by gate");
-
-//        p1.getFoods().add(new PotluckFoods(p1, f2));
-//        p1.getFoods().add(new PotluckFoods(p1, f3));
-//        p2.getFoods().add(new PotluckFoods(p2, f1));
-//
-        Guest g1 = new Guest("Alex",
-            "Thilen",
-            "alex@alex.com");
-        Guest g2 = new Guest("Adrienne",
-            "Emick",
-            "adrienne@adrienne.com");
-        Guest g3 = new Guest("Diane",
-            "Emick",
-            "diane@diane.com");
-
-//        Food f1 = new Food(p1, g1, "pizza");
-//        f1 = foodService.save(f1);
-//        Food f2 = new Food(p1, g2,"wine");
-//        f2 = foodService.save(f2);
-//        Food f3 = new Food(p2, g3,"cheese board");
-//        f3 = foodService.save(f3);
-        userService.save(u1);
+//        p2.getFoods()
+//            .add(new PotluckFoods(p2, f2));
+//        p2.getGuests()
+//            .add(new PotluckGuests(p2, g2));
+//        potluckService.save(p2);
     }
 }
