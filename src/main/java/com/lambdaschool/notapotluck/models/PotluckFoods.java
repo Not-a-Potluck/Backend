@@ -30,16 +30,24 @@ public class PotluckFoods implements Serializable
     @JsonIgnoreProperties(value = "potlucks", allowSetters = true)
     private Food food;
 
+    @ManyToOne
+    @JoinColumns({@JoinColumn(name = "potq_potluckid", referencedColumnName = "potluckid"),
+        @JoinColumn(name = "potq_guestid", referencedColumnName = "guestid")})
+    @JsonIgnoreProperties(value = "", allowSetters = true)
+    private PotluckGuests potluckguest;
+
     public PotluckFoods()
     {
     }
 
     public PotluckFoods(
         Potluck potluck,
-        Food food)
+        Food food,
+        PotluckGuests potluckguest)
     {
         this.potluck = potluck;
         this.food = food;
+        this.potluckguest = potluckguest;
     }
 
     public Potluck getPotluck()
@@ -60,6 +68,16 @@ public class PotluckFoods implements Serializable
     public void setFood(Food food)
     {
         this.food = food;
+    }
+
+    public PotluckGuests getPotluckguest()
+    {
+        return potluckguest;
+    }
+
+    public void setPotluckguest(PotluckGuests potluckguest)
+    {
+        this.potluckguest = potluckguest;
     }
 
     @Override

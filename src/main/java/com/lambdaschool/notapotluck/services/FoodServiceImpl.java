@@ -35,19 +35,19 @@ public class FoodServiceImpl implements FoodService
         foodrepos.deleteAll();
     }
 
-    @Override
-    public Food claim(long foodid, long guestid)
-    {
-        if (foodrepos.findById(foodid) == null)
-        {
-            throw EntityNotFoundException
-
-        }
-
-        if (foodrepos.findById(foodid) != null)
-        {
-
-        }
-
-    }
+//    @Override
+//    public Food claim(long foodid, long guestid)
+//    {
+//        if (foodrepos.findById(foodid) == null)
+//        {
+//            throw EntityNotFoundException
+//
+//        }
+//
+//        if (foodrepos.findById(foodid) != null)
+//        {
+//
+//        }
+//
+//    }
 }

@@ -33,11 +33,11 @@ public class PotluckGuests implements Serializable
     @JsonIgnoreProperties(value = "potlucks", allowSetters = true)
     private Guest guest;
 
-    @ManyToOne
-    @JoinColumns({@JoinColumn(name = "foodid"),
-        @JoinColumn(name = "guestid")
-        })
-    private PotluckGuests pot
+    @OneToMany(mappedBy = "potluckguest",
+        cascade = CascadeType.ALL,
+        orphanRemoval = true)
+    @JsonIgnoreProperties(value = "potluckguest", allowSetters = true)
+    private List<PotluckFoods> potluckfoodslist = new ArrayList<>();
 
     public PotluckGuests()
     {
@@ -71,14 +71,14 @@ public class PotluckGuests implements Serializable
         this.guest = guest;
     }
 
-    public List<PotluckFoods> getPotluckfood()
+    public List<PotluckFoods> getPotluckfoodslist()
     {
-        return potluckfood;
+        return potluckfoodslist;
     }
 
-    public void setPotluckfood(List<PotluckFoods> potluckfood)
+    public void setPotluckfoodslist(List<PotluckFoods> potluckfoodslist)
     {
-        this.potluckfood = potluckfood;
+        this.potluckfoodslist = potluckfoodslist;
     }
 
     @Override

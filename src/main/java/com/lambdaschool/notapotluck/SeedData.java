@@ -71,37 +71,37 @@ public class SeedData implements CommandLineRunner
         u1 = userService.save(u1);
 
 
-        Set<PotluckFoods> potluckFoods = new HashSet<>();
-        potluckFoods.add(new PotluckFoods(new Potluck(), f1));
-
-        Set<PotluckGuests> potluckGuests = new HashSet<>();
-        potluckGuests.add(new PotluckGuests(new Potluck(), g1));
-
         Potluck p1 = new Potluck(u1,
             "Lunch at Gasworks",
             "09/01/2020",
             "11:30am",
             "Gasworks park",
             "North side, look for red umbrella");
+        PotluckGuests pg1 = new PotluckGuests(p1, g1);
+
+        Set<PotluckGuests> potluckGuests = new HashSet<>();
+        potluckGuests.add(pg1);
+        Set<PotluckFoods> potluckFoods = new HashSet<>();
+        potluckFoods.add(new PotluckFoods(p1, f1, pg1));
+
         p1.setFoods(potluckFoods);
         p1.setGuests(potluckGuests);
         p1 = potluckService.save(p1);
-
-
-        potluckFoods = new HashSet<>();
-        potluckFoods.add(new PotluckFoods(new Potluck(), f2));
-
-        potluckGuests = new HashSet<>();
-        potluckGuests.add(new PotluckGuests(new Potluck(), g2));
-
-        Potluck p2 = new Potluck(u1,
-            "Halloween Party",
-            "10/31/2020",
-            "4:00pm",
-            "1111 90th pl ne, Seattle WA",
-            "Black and orange balloons by gate");
-        p2.setFoods(potluckFoods);
-        p2.setGuests(potluckGuests);
-        p2 = potluckService.save(p2);
+//
+//
+//        Potluck p2 = new Potluck(u1,
+//            "Halloween Party",
+//            "10/31/2020",
+//            "4:00pm",
+//            "1111 90th pl ne, Seattle WA",
+//            "Black and orange balloons by gate");
+//        potluckGuests = new HashSet<>();
+//        potluckGuests.add(new PotluckGuests(new Potluck(), g2));
+//        potluckFoods = new HashSet<>();
+//        potluckFoods.add(new PotluckFoods(new Potluck(), f2, new PotluckGuests(p2, g2)));
+//
+//        p2.setFoods(potluckFoods);
+//        p2.setGuests(potluckGuests);
+//        p2 = potluckService.save(p2);
     }
 }

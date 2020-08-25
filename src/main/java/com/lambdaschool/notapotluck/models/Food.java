@@ -22,6 +22,10 @@ public class Food
     public boolean hasvalueforisclaimed = false;
     private boolean isclaimed;
 
+//    /**
+//     Many to One relationship between foods and guests.
+//     A guest can have many foods.
+//     */
 //    @ManyToOne
 //    @JoinColumn(name = "guestid", nullable = false)
 //    @JsonIgnoreProperties(value = "foods", allowSetters = true)

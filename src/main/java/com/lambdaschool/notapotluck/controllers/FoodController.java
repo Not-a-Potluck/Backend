@@ -26,13 +26,13 @@ public class FoodController
     //      - if false, set to true
     //          -> for guestid, add food to isbringing
     //      - if true, return message "already claimed" fixme add exception
-    @GetMapping(value = "/foods/food/{foodid}/claim/{guestid}")
-    public ResponseEntity<?> claimFood(@PathVariable long foodid,
-                                       @PathVariable long guestid)
-    {
-        foodService.claim(foodid, guestid);
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
+//    @GetMapping(value = "/foods/food/{foodid}/claim/{guestid}")
+//    public ResponseEntity<?> claimFood(@PathVariable long foodid,
+//                                       @PathVariable long guestid)
+//    {
+//        foodService.claim(foodid, guestid);
+//        return new ResponseEntity<>(HttpStatus.OK);
+//    }
 
     // GET /foods/food/{foodid}/unclaim/{guestid}
     // verify foodid exists
@@ -43,11 +43,11 @@ public class FoodController
     //      - if true, set to false
     //          -> for guestid, remove food from isbringing
     //      - if false, return message "unclaimed"
-    @GetMapping(value = "/foods/food/{foodid}/unclaim/{guestid}")
-    public ResponseEntity<?> unclaimFood(@PathVariable long foodid,
-                                       @PathVariable long guestid)
-    {
-        foodService.unclaim(foodid, guestid);
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
+//    @GetMapping(value = "/foods/food/{foodid}/unclaim/{guestid}")
+//    public ResponseEntity<?> unclaimFood(@PathVariable long foodid,
+//                                       @PathVariable long guestid)
+//    {
+//        foodService.unclaim(foodid, guestid);
+//        return new ResponseEntity<>(HttpStatus.OK);
+//    }
 }

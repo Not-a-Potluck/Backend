@@ -62,7 +62,8 @@ public class PotluckServiceImpl implements PotluckService
         {
             newPotluck.getFoods()
                 .add(new PotluckFoods(newPotluck,
-                    fe.getFood()));
+                    fe.getFood(),
+                    fe.getPotluckguest()));
         }
 
         newPotluck.getGuests().clear();
@@ -121,20 +122,21 @@ public class PotluckServiceImpl implements PotluckService
             {
                 currentPotluck.getFoods()
                     .add(new PotluckFoods(currentPotluck,
-                        fe.getFood()));
+                        fe.getFood(),
+                        fe.getPotluckguest()));
             }
         }
 
-//        if (potluck.getGuests().size() > 0)
-//        {
-//            currentPotluck.getGuests().clear();
-//            for (PotluckGuests ge : potluck.getGuests())
-//            {
-//                currentPotluck.getGuests()
-//                    .add(new PotluckGuests(currentPotluck,
-//                        ge.getGuest()));
-//            }
-//        }
+        if (potluck.getGuests().size() > 0)
+        {
+            currentPotluck.getGuests().clear();
+            for (PotluckGuests ge : potluck.getGuests())
+            {
+                currentPotluck.getGuests()
+                    .add(new PotluckGuests(currentPotluck,
+                        ge.getGuest()));
+            }
+        }
 
         return potluckrepos.save(currentPotluck);
         //        } else

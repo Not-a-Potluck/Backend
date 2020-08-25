@@ -8,7 +8,7 @@ public interface FoodService
 
     public void deleteAll();
 
-    Food claim(long foodid, long guestid);
-
-    Food unclaim(long foodid, long guestid);
+//    Food claim(long foodid, long guestid);
+//
+//    Food unclaim(long foodid, long guestid);
 }
