@@ -46,6 +46,20 @@ public class RoleServiceImpl implements RoleService
             .orElseThrow(() -> new EntityNotFoundException("Role id " + id + " not found!"));
     }
 
+    @Override
+    public Role findByName(String name)
+    {
+        Role rr = rolerepos.findByNameIgnoreCase(name);
+
+        if (rr != null)
+        {
+            return rr;
+        } else
+        {
+            throw new EntityNotFoundException(name);
+        }
+    }
+
     @Transactional
     @Override
     public Role save(Role role)
