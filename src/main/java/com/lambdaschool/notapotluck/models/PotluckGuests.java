@@ -14,7 +14,7 @@ import java.util.Objects;
 public class PotluckGuests implements Serializable
 {
     /**
-     * 1/2 of the primary key (long) for potluckfoods.
+     * 1/2 of the primary key (long) for potluckguests.
      * Also is a foreign key into the potluck table
      */
     @Id
@@ -24,8 +24,8 @@ public class PotluckGuests implements Serializable
     private Potluck potluck;
 
     /**
-     * 1/2 of the primary key (long) for potluckfoods.
-     * Also is a foreign key into the foods table
+     * 1/2 of the primary key (long) for potluckguests.
+     * Also is a foreign key into the guests table
      */
     @Id
     @ManyToOne
@@ -33,11 +33,11 @@ public class PotluckGuests implements Serializable
     @JsonIgnoreProperties(value = "potlucks", allowSetters = true)
     private Guest guest;
 
-    @OneToMany(mappedBy = "potluckguest",
-        cascade = CascadeType.ALL,
-        orphanRemoval = true)
-    @JsonIgnoreProperties(value = "potluckguest", allowSetters = true)
-    private List<PotluckFoods> potluckfoodslist = new ArrayList<>();
+//    @OneToMany(mappedBy = "potluckguest",
+//        cascade = CascadeType.ALL,
+//        orphanRemoval = true)
+//    @JsonIgnoreProperties(value = "potluckguest", allowSetters = true)
+//    private List<PotluckFoods> potluckfoodslist = new ArrayList<>();
 
     public PotluckGuests()
     {
@@ -71,15 +71,15 @@ public class PotluckGuests implements Serializable
         this.guest = guest;
     }
 
-    public List<PotluckFoods> getPotluckfoodslist()
-    {
-        return potluckfoodslist;
-    }
-
-    public void setPotluckfoodslist(List<PotluckFoods> potluckfoodslist)
-    {
-        this.potluckfoodslist = potluckfoodslist;
-    }
+//    public List<PotluckFoods> getPotluckfoodslist()
+//    {
+//        return potluckfoodslist;
+//    }
+//
+//    public void setPotluckfoodslist(List<PotluckFoods> potluckfoodslist)
+//    {
+//        this.potluckfoodslist = potluckfoodslist;
+//    }
 
     @Override
     public boolean equals(Object o)
