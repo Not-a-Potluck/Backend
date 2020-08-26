@@ -12,6 +12,7 @@ public class UserMinimum
 
     private String password;
 
+    @Email
     private String primaryemail;
 
     public UserMinimum()

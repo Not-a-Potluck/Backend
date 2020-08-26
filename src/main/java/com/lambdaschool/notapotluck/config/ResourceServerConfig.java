@@ -53,21 +53,12 @@ public class ResourceServerConfig
                 "/webjars/**",
                 "/createnewuser")
             .permitAll()
-            .antMatchers(HttpMethod.POST,
-                "/users/**")
-            .hasAnyRole("ORGANIZER")
-            .antMatchers(HttpMethod.DELETE,
-                "/users/**")
-            .hasAnyRole("ORGANIZER")
-            .antMatchers(HttpMethod.PUT,
-                "/users/**")
-            .hasAnyRole("ORGANIZER")
             .antMatchers("/users/**",
                 "/oauth/revoke-token",
                 "/logout")
             .authenticated()
             .antMatchers("/roles/**")
-            .hasAnyRole("ORGANIZER")
+            .hasAnyRole("USER")
             .and()
             .exceptionHandling()
             .accessDeniedHandler(new OAuth2AccessDeniedHandler());

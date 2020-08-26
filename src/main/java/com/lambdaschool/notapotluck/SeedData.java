@@ -39,15 +39,14 @@ public class SeedData implements CommandLineRunner
     @Override
     public void run(String[] args) throws Exception
     {
-        potluckService.deleteAll();
-        foodService.deleteAll();
-        guestService.deleteAll();
-        userService.deleteAll();
-        roleService.deleteAll();
+//        potluckService.deleteAll();
+//        foodService.deleteAll();
+//        guestService.deleteAll();
+//        roleService.deleteAll();
+//        userService.deleteAll();
 
-        Role r1 = new Role("organizer");
-        Role r2 = new Role("guest");
-        Role r3 = new Role("user");
+        Role r1 = new Role("user");
+        r1 = roleService.save(r1);
 
         Food f1 = new Food("pizza");
         f1 = foodService.save(f1);
