@@ -8,8 +8,8 @@ import java.util.Set;
 
 @Entity
 @Table(name = "potluck")
-@JsonIgnoreProperties(value = {"hasvalueforishost"})
-public class Potluck
+//@JsonIgnoreProperties(value = {"hasvalueforishost"})
+public class Potluck extends Auditable
 {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -25,9 +25,9 @@ public class Potluck
 
     private String description;
 
-    @Transient
-    public boolean hasvalueforishost = false;
-    private boolean ishost;
+//    @Transient
+//    public boolean hasvalueforishost = false;
+//    private boolean ishost;
 
     /**
      Many to One relationship between potlucks and users.
@@ -74,7 +74,7 @@ public class Potluck
         this.time = time;
         this.location = location;
         this.description = description;
-        this.ishost = false;
+//        this.ishost = false;
     }
 
     public long getPotluckid()
@@ -167,14 +167,14 @@ public class Potluck
         this.guests = guests;
     }
 
-    public boolean isHost()
-    {
-        return ishost;
-    }
-
-    public void setHost(boolean host)
-    {
-        hasvalueforishost = true;
-        ishost = host;
-    }
+//    public boolean isHost()
+//    {
+//        return ishost;
+//    }
+//
+//    public void setHost(boolean host)
+//    {
+//        hasvalueforishost = true;
+//        ishost = host;
+//    }
 }

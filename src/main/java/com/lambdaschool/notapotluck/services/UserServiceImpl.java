@@ -1,7 +1,9 @@
 package com.lambdaschool.notapotluck.services;
 
 import com.lambdaschool.notapotluck.models.Potluck;
+import com.lambdaschool.notapotluck.models.Role;
 import com.lambdaschool.notapotluck.models.User;
+import com.lambdaschool.notapotluck.models.UserRoles;
 import com.lambdaschool.notapotluck.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +20,9 @@ public class UserServiceImpl implements UserService
     // connects service to user table
     @Autowired
     private UserRepository userrepos;
+
+    @Autowired
+    private RoleService roleService;
 
     @Override
     public List<User> findAll()
@@ -53,8 +58,19 @@ public class UserServiceImpl implements UserService
         }
 
         newUser.setUsername(user.getUsername().toLowerCase());
-        newUser.setPassword(user.getPassword());
+        newUser.setPasswordNoEncrypt(user.getPassword());
         newUser.setPrimaryemail(user.getPrimaryemail().toLowerCase());
+
+        newUser.getRoles()
+            .clear();
+        for (UserRoles ur : user.getRoles())
+        {
+            Role addRole = roleService.findRoleById(ur.getRole()
+                .getRoleid());
+            newUser.getRoles()
+                .add(new UserRoles(newUser,
+                    addRole));
+        }
 
         newUser.getPotlucks().clear();
         for (Potluck pe : user.getPotlucks())
@@ -86,12 +102,28 @@ public class UserServiceImpl implements UserService
 
             if (user.getPassword() != null)
             {
-                currentUser.setPassword(user.getPassword());
+                currentUser.setPasswordNoEncrypt(user.getPassword());
             }
 
             if (user.getPrimaryemail() != null)
             {
                 currentUser.setPrimaryemail(user.getPrimaryemail().toLowerCase());
+            }
+
+            if (user.getRoles()
+                .size() > 0)
+            {
+                currentUser.getRoles()
+                    .clear();
+                for (UserRoles ur : user.getRoles())
+                {
+                    Role addRole = roleService.findRoleById(ur.getRole()
+                        .getRoleid());
+
+                    currentUser.getRoles()
+                        .add(new UserRoles(currentUser,
+                            addRole));
+                }
             }
 
             if (user.getPotlucks().size() > 0)
@@ -116,5 +148,12 @@ public class UserServiceImpl implements UserService
 //            // to recognize that this exception can be thrown
 //            throw new ResourceNotFoundException("This user is not authorized to make change");
 //        }
+    }
+
+    @Transactional
+    @Override
+    public void deleteAll()
+    {
+        userrepos.deleteAll();
     }
 }

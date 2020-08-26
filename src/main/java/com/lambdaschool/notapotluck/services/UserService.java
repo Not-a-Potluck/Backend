@@ -13,4 +13,6 @@ public interface UserService
     User save(User user);
 
     User update(User user, long id);
+
+    public void deleteAll();
 }

@@ -3,13 +3,15 @@ package com.lambdaschool.notapotluck.models;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
 @Table(name = "guests")
 @JsonIgnoreProperties(value = {"hasvalueforresponded","hasvalueforattending"})
-public class Guest
+public class Guest extends Auditable
 {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -39,14 +41,20 @@ public class Guest
     @JsonIgnoreProperties(value = "guest", allowSetters = true)
     private Set<PotluckGuests> potlucks = new HashSet<>();
 
-    /**
-     * connects guest to the guest food combination
-     */
-    @OneToMany(mappedBy = "guest",
-        cascade = CascadeType.ALL,
-        orphanRemoval = true)
-    @JsonIgnoreProperties(value = "guest", allowSetters = true)
-    private Set<GuestFoods> isbringing = new HashSet<>();
+//    @OneToMany(mappedBy = "guest",
+//        cascade = CascadeType.ALL,
+//        orphanRemoval = true)
+//    @JsonIgnoreProperties(value = "guest", allowSetters = true)
+//    private List<Food> foods = new ArrayList<>();
+
+//    /**
+//     * connects guest to the guest food combination
+//     */
+//    @OneToMany(mappedBy = "guest",
+//        cascade = CascadeType.ALL,
+//        orphanRemoval = true)
+//    @JsonIgnoreProperties(value = "guest", allowSetters = true)
+//    private Set<GuestFoods> isbringing = new HashSet<>();
 
     public Guest()
     {
@@ -136,13 +144,13 @@ public class Guest
         this.potlucks = potlucks;
     }
 
-    public Set<GuestFoods> getIsbringing()
-    {
-        return isbringing;
-    }
-
-    public void setIsbringing(Set<GuestFoods> isbringing)
-    {
-        this.isbringing = isbringing;
-    }
+//    public List<Food> getFoods()
+//    {
+//        return foods;
+//    }
+//
+//    public void setFoods(List<Food> foods)
+//    {
+//        this.foods = foods;
+//    }
 }

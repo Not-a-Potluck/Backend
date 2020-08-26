@@ -9,7 +9,7 @@ import java.util.Set;
 @Entity
 @Table(name = "foods")
 @JsonIgnoreProperties(value = {"hasvalueforisclaimed"})
-public class Food
+public class Food extends Auditable
 {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -18,9 +18,9 @@ public class Food
 
     private String foodname;
 
-    @Transient
-    public boolean hasvalueforisclaimed = false;
-    private boolean isclaimed;
+//    @Transient
+//    public boolean hasvalueforisclaimed = false;
+//    private boolean isclaimed;
 
 //    /**
 //     Many to One relationship between foods and guests.
@@ -28,7 +28,7 @@ public class Food
 //     */
 //    @ManyToOne
 //    @JoinColumn(name = "guestid", nullable = false)
-//    @JsonIgnoreProperties(value = "foods", allowSetters = true)
+//    @JsonIgnoreProperties(value = "food", allowSetters = true)
 //    private Guest guest;
 
     /**
@@ -40,6 +40,12 @@ public class Food
     @JsonIgnoreProperties(value = "food", allowSetters = true)
     private Set<PotluckFoods> potlucks = new HashSet<>();
 
+//    @OneToMany(mappedBy = "food",
+//        cascade = CascadeType.ALL,
+//        orphanRemoval = true)
+//    @JsonIgnoreProperties(value = "isbringing", allowSetters = true)
+//    private Set<GuestFoods> guest = new HashSet<>();
+
     public Food()
     {
     }
@@ -48,7 +54,7 @@ public class Food
         String foodname)
     {
         this.foodname = foodname;
-        this.isclaimed = false;
+//        this.isclaimed = false;
     }
 
     public long getFoodid()
@@ -71,6 +77,27 @@ public class Food
         this.foodname = foodname;
     }
 
+//    public boolean isClaimed()
+//    {
+//        return isclaimed;
+//    }
+//
+//    public void setClaimed(boolean claimed)
+//    {
+//        hasvalueforisclaimed = true;
+//        isclaimed = claimed;
+//    }
+//
+//    public Guest getGuest()
+//    {
+//        return guest;
+//    }
+//
+//    public void setGuest(Guest guest)
+//    {
+//        this.guest = guest;
+//    }
+
     public Set<PotluckFoods> getPotlucks()
     {
         return potlucks;
@@ -79,16 +106,5 @@ public class Food
     public void setPotlucks(Set<PotluckFoods> potlucks)
     {
         this.potlucks = potlucks;
-    }
-
-    public boolean isClaimed()
-    {
-        return isclaimed;
-    }
-
-    public void setClaimed(boolean claimed)
-    {
-        hasvalueforisclaimed = true;
-        isclaimed = claimed;
     }
 }
