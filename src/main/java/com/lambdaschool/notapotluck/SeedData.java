@@ -1,10 +1,7 @@
 package com.lambdaschool.notapotluck;
 
 import com.lambdaschool.notapotluck.models.*;
-import com.lambdaschool.notapotluck.services.FoodService;
-import com.lambdaschool.notapotluck.services.GuestService;
-import com.lambdaschool.notapotluck.services.PotluckService;
-import com.lambdaschool.notapotluck.services.UserService;
+import com.lambdaschool.notapotluck.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -27,6 +24,9 @@ public class SeedData implements CommandLineRunner
     private UserService userService;
 
     @Autowired
+    RoleService roleService;
+
+    @Autowired
     private PotluckService potluckService;
 
     @Autowired
@@ -42,6 +42,11 @@ public class SeedData implements CommandLineRunner
         potluckService.deleteAll();
         foodService.deleteAll();
         guestService.deleteAll();
+        userService.deleteAll();
+        roleService.deleteAll();
+
+        Role r1 = new Role("organizer");
+        Role r2 = new Role("guest");
 
         Food f1 = new Food("pizza");
         f1 = foodService.save(f1);
@@ -68,12 +73,10 @@ public class SeedData implements CommandLineRunner
             "password",
             "lauren@lauren.com",
             "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png");
+        u1.getRoles().add(new UserRoles(u1, r1));
         u1 = userService.save(u1);
 
-        Set<PotluckFoods> potluckFoods = new HashSet<>();
-        potluckFoods.add(new PotluckFoods(new Potluck(), f1));
-        Set<PotluckGuests> potluckGuests = new HashSet<>();
-        potluckGuests.add(new PotluckGuests(new Potluck(), g1));
+
         Potluck p1 = new Potluck(u1,
             "Lunch at Gasworks",
             "09/01/2020",
@@ -81,6 +84,11 @@ public class SeedData implements CommandLineRunner
             "Gasworks park",
             "North side, look for red umbrella");
 //        PotluckGuests pg1 = new PotluckGuests(p1, g1);
+        Set<PotluckFoods> potluckFoods = new HashSet<>();
+        potluckFoods.add(new PotluckFoods(p1, f1));
+        Set<PotluckGuests> potluckGuests = new HashSet<>();
+        potluckGuests.add(new PotluckGuests(p1, g1));
+
         p1.setFoods(potluckFoods);
         p1.setGuests(potluckGuests);
         p1 = potluckService.save(p1);

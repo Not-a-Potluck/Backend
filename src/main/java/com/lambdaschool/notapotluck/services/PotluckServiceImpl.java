@@ -104,7 +104,7 @@ public class PotluckServiceImpl implements PotluckService
         for (PotluckFoods fe : potluck.getFoods())
         {
             newPotluck.getFoods()
-                .add(new PotluckFoods(fe.getPotluck(),
+                .add(new PotluckFoods(newPotluck,
                     fe.getFood()));
         }
 
@@ -112,7 +112,7 @@ public class PotluckServiceImpl implements PotluckService
         for (PotluckGuests ge : potluck.getGuests())
         {
             newPotluck.getGuests()
-                .add(new PotluckGuests(ge.getPotluck(),
+                .add(new PotluckGuests(newPotluck,
                     ge.getGuest()));
         }
 

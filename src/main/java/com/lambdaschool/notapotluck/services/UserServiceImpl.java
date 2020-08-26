@@ -117,4 +117,11 @@ public class UserServiceImpl implements UserService
 //            throw new ResourceNotFoundException("This user is not authorized to make change");
 //        }
     }
+
+    @Transactional
+    @Override
+    public void deleteAll()
+    {
+        userrepos.deleteAll();
+    }
 }
