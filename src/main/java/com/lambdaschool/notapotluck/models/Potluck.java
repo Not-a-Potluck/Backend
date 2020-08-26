@@ -8,7 +8,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "potluck")
-@JsonIgnoreProperties(value = {"hasvalueforishost"})
+//@JsonIgnoreProperties(value = {"hasvalueforishost"})
 public class Potluck
 {
     @Id
