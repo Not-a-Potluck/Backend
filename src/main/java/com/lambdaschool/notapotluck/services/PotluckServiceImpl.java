@@ -17,6 +17,9 @@ public class PotluckServiceImpl implements PotluckService
     @Autowired
     private PotluckRespository potluckrepos;
 
+    @Autowired
+    private UserService userService;
+
     @Override
     public List<Potluck> findAll()
     {
@@ -92,8 +95,8 @@ public class PotluckServiceImpl implements PotluckService
                 .orElseThrow(() -> new EntityNotFoundException("Potluck id " + potluck.getPotluckid() + " not found!"));
             newPotluck.setPotluckid(potluck.getPotluckid());
         }
-
-        newPotluck.setUser(potluck.getUser());
+        User currentUser = userService.findUserById(potluck.getUser().getUserid());
+        newPotluck.setUser(currentUser);
         newPotluck.setEventname(potluck.getEventname());
         newPotluck.setDate(potluck.getDate());
         newPotluck.setTime(potluck.getTime());
