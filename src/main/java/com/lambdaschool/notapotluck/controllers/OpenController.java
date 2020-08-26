@@ -89,7 +89,9 @@ public class OpenController
         // return the access token
         // To get the access token, surf to the endpoint /login just as if a client had done this.
         RestTemplate restTemplate = new RestTemplate();
-        String requestURI = "http://" + httpServletRequest.getServerName() + ":" + httpServletRequest.getLocalPort() + "/login";
+        String requestURI = "http://" + httpServletRequest.getServerName() +
+            (httpServletRequest.getServerName().equalsIgnoreCase("localhost") ? ":" + httpServletRequest.getLocalPort() : "") +
+            "/login";
 
         List<MediaType> acceptableMediaTypes = new ArrayList<>();
         acceptableMediaTypes.add(MediaType.APPLICATION_JSON);
@@ -97,8 +99,9 @@ public class OpenController
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
         headers.setAccept(acceptableMediaTypes);
-        headers.setBasicAuth(System.getenv("OAUTHCLIENTID"),
-            System.getenv("OAUTHCLIENTSECRET"));
+        headers.setBasicAuth("lambda-client", "lambda-secret");
+//        headers.setBasicAuth(System.getenv("OAUTHCLIENTID"),
+//            System.getenv("OAUTHCLIENTSECRET"));
 
         MultiValueMap<String, String> map = new LinkedMultiValueMap<>();
         map.add("grant_type",

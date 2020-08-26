@@ -8,7 +8,7 @@ import java.io.Serializable;
 @Entity
 @Table(name = "potluckfoods")
 @IdClass(PotluckFoodsId.class)
-public class PotluckFoods implements Serializable
+public class PotluckFoods extends Auditable implements Serializable
 {
     /**
      * 1/2 of the primary key (long) for potluckfoods.

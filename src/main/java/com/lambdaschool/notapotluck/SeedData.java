@@ -47,6 +47,7 @@ public class SeedData implements CommandLineRunner
 
         Role r1 = new Role("organizer");
         Role r2 = new Role("guest");
+        Role r3 = new Role("user");
 
         Food f1 = new Food("pizza");
         f1 = foodService.save(f1);

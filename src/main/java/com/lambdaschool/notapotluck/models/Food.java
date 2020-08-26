@@ -9,7 +9,7 @@ import java.util.Set;
 @Entity
 @Table(name = "foods")
 @JsonIgnoreProperties(value = {"hasvalueforisclaimed"})
-public class Food
+public class Food extends Auditable
 {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

@@ -15,7 +15,7 @@ import java.util.Set;
 
 @Entity // allows interaction with user table
 @Table(name = "users")
-public class User
+public class User extends Auditable
 {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -63,8 +63,8 @@ public class User
         String primaryemail,
         String imageurl)
     {
-        this.username = username;
-        this.password = password;
+        setUsername(username);
+        setPassword(password);
         this.primaryemail = primaryemail;
         this.imageurl = imageurl;
     }
@@ -92,6 +92,11 @@ public class User
     public String getPassword()
     {
         return password;
+    }
+
+    public void setPasswordNoEncrypt(String password)
+    {
+        this.password = password;
     }
 
     public void setPassword(String password)

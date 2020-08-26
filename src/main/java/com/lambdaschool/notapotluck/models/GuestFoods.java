@@ -9,7 +9,7 @@
 //@Entity
 //@Table(name = "guestfoods")
 //@IdClass(GuestFoodsId.class)
-//public class GuestFoods implements Serializable
+//public class GuestFoods extends Auditable implements Serializable
 //{
 //    /**
 //     * 1/2 of the primary key (long) for guestfoods.

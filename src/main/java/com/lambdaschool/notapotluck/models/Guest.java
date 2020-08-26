@@ -11,7 +11,7 @@ import java.util.Set;
 @Entity
 @Table(name = "guests")
 @JsonIgnoreProperties(value = {"hasvalueforresponded","hasvalueforattending"})
-public class Guest
+public class Guest extends Auditable
 {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

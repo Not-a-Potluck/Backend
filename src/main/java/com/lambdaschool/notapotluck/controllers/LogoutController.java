@@ -11,9 +11,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 import javax.servlet.http.HttpServletRequest;
 
-/**
- * The application implements its own logout endpoint. This works by removing the authentication token for the user.
- */
 @Controller
 public class LogoutController
 {

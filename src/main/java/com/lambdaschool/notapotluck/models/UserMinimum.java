@@ -8,15 +8,25 @@ import javax.validation.constraints.Email;
  */
 public class UserMinimum
 {
-    /**
-     * The username (String)
-     */
     private String username;
 
     private String password;
 
-    @Email
     private String primaryemail;
+
+    public UserMinimum()
+    {
+    }
+
+    public UserMinimum(
+        String username,
+        String password,
+        String primaryemail)
+    {
+        this.username = username;
+        this.password = password;
+        this.primaryemail = primaryemail;
+    }
 
     public String getUsername()
     {

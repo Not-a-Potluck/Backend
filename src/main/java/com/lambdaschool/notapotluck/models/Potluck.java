@@ -9,7 +9,7 @@ import java.util.Set;
 @Entity
 @Table(name = "potluck")
 //@JsonIgnoreProperties(value = {"hasvalueforishost"})
-public class Potluck
+public class Potluck extends Auditable
 {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

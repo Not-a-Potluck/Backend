@@ -11,7 +11,7 @@ import java.util.Objects;
 @Entity
 @Table(name = "potluckguests")
 @IdClass(PotluckGuestsId.class)
-public class PotluckGuests implements Serializable
+public class PotluckGuests extends Auditable implements Serializable
 {
     /**
      * 1/2 of the primary key (long) for potluckguests.
