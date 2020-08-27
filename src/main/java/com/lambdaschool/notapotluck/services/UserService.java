@@ -1,6 +1,7 @@
 package com.lambdaschool.notapotluck.services;
 
 import com.lambdaschool.notapotluck.models.User;
+import com.lambdaschool.notapotluck.models.UserMinimum;
 
 import java.util.List;
 
@@ -12,7 +13,7 @@ public interface UserService
 
     User save(User user);
 
-    User update(User user, long id);
+    User update(UserMinimum user, long id);
 
     public void deleteAll();
 }

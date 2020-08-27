@@ -49,6 +49,15 @@ public class Potluck extends Auditable
     @JsonIgnoreProperties(value = "potluck", allowSetters = true)
     private List<Food> foods = new ArrayList<>();
 
+    /**
+     List of guests items for this potluck
+     */
+    @OneToMany(mappedBy = "potluck",
+        cascade = CascadeType.ALL,
+        orphanRemoval = true)
+    @JsonIgnoreProperties(value = "potluck", allowSetters = true)
+    private List<Guest> guests = new ArrayList<>();
+
 //    /**
 //     * connects potluck to the food potluck combination
 //     */
@@ -58,14 +67,14 @@ public class Potluck extends Auditable
 //    @JsonIgnoreProperties(value = "potluck", allowSetters = true)
 //    private Set<PotluckFoods> foods = new HashSet<>();
 
-    /**
-     * connects potluck to the guest potluck combination
-     */
-    @OneToMany(mappedBy = "potluck",
-        cascade = CascadeType.ALL,
-        orphanRemoval = true)
-    @JsonIgnoreProperties(value = "potluck", allowSetters = true)
-    private Set<PotluckGuests> guests = new HashSet<>();
+//    /**
+//     * connects potluck to the guest potluck combination
+//     */
+//    @OneToMany(mappedBy = "potluck",
+//        cascade = CascadeType.ALL,
+//        orphanRemoval = true)
+//    @JsonIgnoreProperties(value = "potluck", allowSetters = true)
+//    private Set<PotluckGuests> guests = new HashSet<>();
 
     public Potluck()
     {
@@ -167,12 +176,12 @@ public class Potluck extends Auditable
         this.foods = foods;
     }
 
-    public Set<PotluckGuests> getGuests()
+    public List<Guest> getGuests()
     {
         return guests;
     }
 
-    public void setGuests(Set<PotluckGuests> guests)
+    public void setGuests(List<Guest> guests)
     {
         this.guests = guests;
     }

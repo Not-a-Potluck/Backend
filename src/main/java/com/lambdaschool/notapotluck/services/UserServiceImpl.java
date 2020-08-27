@@ -1,9 +1,6 @@
 package com.lambdaschool.notapotluck.services;
 
-import com.lambdaschool.notapotluck.models.Potluck;
-import com.lambdaschool.notapotluck.models.Role;
-import com.lambdaschool.notapotluck.models.User;
-import com.lambdaschool.notapotluck.models.UserRoles;
+import com.lambdaschool.notapotluck.models.*;
 import com.lambdaschool.notapotluck.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -89,59 +86,65 @@ public class UserServiceImpl implements UserService
 
     @Transactional
     @Override
-    public User update(User user, long id)
+    public User update(UserMinimum user, long id)
     {
-        User currentUser = findUserById(id);
+        User updateUser = userrepos.findById(id)
+            .orElseThrow(() -> new EntityNotFoundException("User " + id + " not found!"));
 
 //        if (helperFunctions.isAuthorizedToMakeChange(currentUser.getUsername()))
 //        {
-            if (user.getUsername() != null)
-            {
-                currentUser.setUsername(user.getUsername().toLowerCase());
-            }
+//            if (user.getUsername() != null)
+//            {
+//                currentUser.setUsername(user.getUsername().toLowerCase());
+//            }
 
-            if (user.getPassword() != null)
+            if (user.getPassword() != null && user.getPassword() != "")
             {
-                currentUser.setPasswordNoEncrypt(user.getPassword());
+                updateUser.setPassword(user.getPassword());
             }
 
             if (user.getPrimaryemail() != null)
             {
-                currentUser.setPrimaryemail(user.getPrimaryemail().toLowerCase());
+                updateUser.setPrimaryemail(user.getPrimaryemail().toLowerCase());
             }
 
-            if (user.getRoles()
-                .size() > 0)
+            if (user.getImageurl() != null)
             {
-                currentUser.getRoles()
-                    .clear();
-                for (UserRoles ur : user.getRoles())
-                {
-                    Role addRole = roleService.findRoleById(ur.getRole()
-                        .getRoleid());
-
-                    currentUser.getRoles()
-                        .add(new UserRoles(currentUser,
-                            addRole));
-                }
+                updateUser.setImageurl(user.getImageurl());
             }
+//
+//            if (user.getRoles()
+//                .size() > 0)
+//            {
+//                currentUser.getRoles()
+//                    .clear();
+//                for (UserRoles ur : user.getRoles())
+//                {
+//                    Role addRole = roleService.findRoleById(ur.getRole()
+//                        .getRoleid());
+//
+//                    currentUser.getRoles()
+//                        .add(new UserRoles(currentUser,
+//                            addRole));
+//                }
+//            }
+//
+//            if (user.getPotlucks().size() > 0)
+//            {
+//                currentUser.getPotlucks().clear();
+//                for (Potluck pe : user.getPotlucks())
+//                {
+//                    currentUser.getPotlucks()
+//                        .add(new Potluck(currentUser,
+//                            pe.getEventname(),
+//                            pe.getDate(),
+//                            pe.getTime(),
+//                            pe.getLocation(),
+//                            pe.getDescription()));
+//                }
+//            }
 
-            if (user.getPotlucks().size() > 0)
-            {
-                currentUser.getPotlucks().clear();
-                for (Potluck pe : user.getPotlucks())
-                {
-                    currentUser.getPotlucks()
-                        .add(new Potluck(currentUser,
-                            pe.getEventname(),
-                            pe.getDate(),
-                            pe.getTime(),
-                            pe.getLocation(),
-                            pe.getDescription()));
-                }
-            }
-
-            return userrepos.save(currentUser);
+            return userrepos.save(updateUser);
 //        } else
 //        {
 //            // note we should never get to this line but is needed for the compiler

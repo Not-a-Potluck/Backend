@@ -32,14 +32,14 @@ public class Guest extends Auditable
     public boolean hasvalueforattending = false;
     private boolean attending;
 
-    /**
-     * connects guest to the potluck guest combination
-     */
-    @OneToMany(mappedBy = "guest",
-        cascade = CascadeType.ALL,
-        orphanRemoval = true)
-    @JsonIgnoreProperties(value = "guest", allowSetters = true)
-    private Set<PotluckGuests> potlucks = new HashSet<>();
+//    /**
+//     * connects guest to the potluck guest combination
+//     */
+//    @OneToMany(mappedBy = "guest",
+//        cascade = CascadeType.ALL,
+//        orphanRemoval = true)
+//    @JsonIgnoreProperties(value = "guest", allowSetters = true)
+//    private Set<PotluckGuests> potlucks = new HashSet<>();
 
 //    @OneToMany(mappedBy = "guest",
 //        cascade = CascadeType.ALL,
@@ -56,15 +56,25 @@ public class Guest extends Auditable
 //    @JsonIgnoreProperties(value = "guest", allowSetters = true)
 //    private Set<GuestFoods> isbringing = new HashSet<>();
 
+    /**
+     potluck that this guest is associated with
+     */
+    @ManyToOne
+    @JoinColumn(name = "potluckid", nullable = false)
+    @JsonIgnoreProperties(value = "guest", allowSetters = true)
+    private Potluck potluck;
+
     public Guest()
     {
     }
 
     public Guest(
+        Potluck potluck,
         String fname,
         String lname,
         String primaryemail)
     {
+        this.potluck = potluck;
         this.fname = fname;
         this.lname = lname;
         this.primaryemail = primaryemail;
@@ -134,23 +144,13 @@ public class Guest extends Auditable
         this.attending = attending;
     }
 
-    public Set<PotluckGuests> getPotlucks()
+    public Potluck getPotluck()
     {
-        return potlucks;
+        return potluck;
     }
 
-    public void setPotlucks(Set<PotluckGuests> potlucks)
+    public void setPotluck(Potluck potluck)
     {
-        this.potlucks = potlucks;
+        this.potluck = potluck;
     }
-
-//    public List<Food> getFoods()
-//    {
-//        return foods;
-//    }
-//
-//    public void setFoods(List<Food> foods)
-//    {
-//        this.foods = foods;
-//    }
 }

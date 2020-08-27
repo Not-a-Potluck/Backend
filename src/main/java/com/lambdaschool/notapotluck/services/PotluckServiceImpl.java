@@ -122,14 +122,27 @@ public class PotluckServiceImpl implements PotluckService
             newPotluck.getFoods().add(newFood);
         }
 
+        // one to many
         newPotluck.getGuests().clear();
-        for (PotluckGuests ge : potluck.getGuests())
+        for (Guest ge : potluck.getGuests())
         {
-            Guest addGuest = guestService.findGuestById(ge.getGuest().getGuestid());
-            newPotluck.getGuests()
-                .add(new PotluckGuests(newPotluck,
-                    addGuest));
+            Guest newGuest = new Guest();
+            newGuest.setFname(ge.getFname());
+            newGuest.setLname(ge.getLname());
+            newGuest.setPrimaryemail(ge.getPrimaryemail());
+            newGuest.setPotluck(newPotluck);
+
+            newPotluck.getGuests().add(newGuest);
         }
+
+//        newPotluck.getGuests().clear();
+//        for (PotluckGuests ge : potluck.getGuests())
+//        {
+//            Guest addGuest = guestService.findGuestById(ge.getGuest().getGuestid());
+//            newPotluck.getGuests()
+//                .add(new PotluckGuests(newPotluck,
+//                    addGuest));
+//        }
 
         return potluckrepos.save(newPotluck);
     }
@@ -186,13 +199,26 @@ public class PotluckServiceImpl implements PotluckService
         if (potluck.getGuests().size() > 0)
         {
             currentPotluck.getGuests().clear();
-            for (PotluckGuests ge : potluck.getGuests())
+            for (Guest ge : potluck.getGuests())
             {
                 currentPotluck.getGuests()
-                    .add(new PotluckGuests(currentPotluck,
-                        ge.getGuest()));
+                    .add(new Guest(currentPotluck,
+                        ge.getFname(),
+                        ge.getLname(),
+                        ge.getPrimaryemail()));
             }
         }
+
+//        if (potluck.getGuests().size() > 0)
+//        {
+//            currentPotluck.getGuests().clear();
+//            for (PotluckGuests ge : potluck.getGuests())
+//            {
+//                currentPotluck.getGuests()
+//                    .add(new PotluckGuests(currentPotluck,
+//                        ge.getGuest()));
+//            }
+//        }
 
         return potluckrepos.save(currentPotluck);
         //        } else

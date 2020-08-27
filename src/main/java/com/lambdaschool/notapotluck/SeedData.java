@@ -49,19 +49,19 @@ public class SeedData implements CommandLineRunner
         Role r1 = new Role("user");
         r1 = roleService.save(r1);
 
-        Guest g1 = new Guest("Alex",
-            "Thilen",
-            "alex@alex.com");
-        g1 = guestService.save(g1);
-
-        Guest g2 = new Guest("Adrienne",
-            "Emick",
-            "adrienne@adrienne.com");
-        g2 = guestService.save(g2);
-        Guest g3 = new Guest("Diane",
-            "Emick",
-            "diane@diane.com");
-        g3 = guestService.save(g3);
+//        Guest g1 = new Guest("Alex",
+//            "Thilen",
+//            "alex@alex.com");
+//        g1 = guestService.save(g1);
+//
+//        Guest g2 = new Guest("Adrienne",
+//            "Emick",
+//            "adrienne@adrienne.com");
+//        g2 = guestService.save(g2);
+//        Guest g3 = new Guest("Diane",
+//            "Emick",
+//            "diane@diane.com");
+//        g3 = guestService.save(g3);
 
         User u1 = new User("laurenemick",
             "password",
@@ -82,10 +82,13 @@ public class SeedData implements CommandLineRunner
         p1.getFoods().add(new Food(p1,"pizza"));
         p1.getFoods().add(new Food(p1,"salad"));
 
-        Set<PotluckGuests> potluckGuests = new HashSet<>();
-        potluckGuests.add(new PotluckGuests(p1, g1));
+        p1.getGuests().add(new Guest(p1,"Alex", "Thilen", "alex@alex.com"));
+        p1.getGuests().add(new Guest(p1,"Adrienne", "Emick", "adj@adj.com"));
 
-        p1.setGuests(potluckGuests);
+//        Set<PotluckGuests> potluckGuests = new HashSet<>();
+//        potluckGuests.add(new PotluckGuests(p1, g1));
+
+//        p1.setGuests(potluckGuests);
         p1 = potluckService.save(p1);
 
 

@@ -61,7 +61,7 @@ public class ResourceServerConfig
                 "/logout")
             .authenticated()
             .antMatchers("/roles/**")
-            .hasAnyRole("USER")
+            .hasAnyRole("USERS")
             .and()
             .exceptionHandling()
             .accessDeniedHandler(new OAuth2AccessDeniedHandler());
