@@ -30,7 +30,7 @@ public class PotluckController
     }
 
     // POST http://localhost:2019/potlucks/potluck
-    @PostMapping(value = "/potluck")
+    @PostMapping(value = "/potluck", consumes = "application/json")
     public ResponseEntity<?> addNewPotluck(@Valid
                                            @RequestBody
                                                    Potluck newpotluck) throws URISyntaxException
@@ -41,8 +41,8 @@ public class PotluckController
         // set the location header for the newly created resource
         HttpHeaders responseHeaders = new HttpHeaders();
         URI newPotluckURI = ServletUriComponentsBuilder.fromCurrentRequest()
-            .path("/{potluckid}")
-            .buildAndExpand(newpotluck.getPotluckid())
+            .path("/" + newpotluck.getPotluckid())
+            .build()
             .toUri();
         responseHeaders.setLocation(newPotluckURI);
 

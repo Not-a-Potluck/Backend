@@ -36,20 +36,20 @@ public class FoodController
             HttpStatus.OK);
     }
 
-    // POST http://localhost:2019/foods/food
-    @PostMapping(value = "/food")
-    public ResponseEntity<?> addNewFood(@Valid
-                                           @RequestBody
-                                               Food newfood) throws URISyntaxException
+    // POST http://localhost:2019/foods/potluck/{potluckid}/food/{newfood}
+    @PostMapping(value = "/potluck/{potluckid}/food/{newfood}")
+    public ResponseEntity<?> addNewFood(@PathVariable
+                                                long potluckid,
+                                        @PathVariable
+                                            String newfood) throws URISyntaxException
     {
-        newfood.setFoodid(0);
-        newfood = foodService.save(newfood);
+        Food newFood = foodService.save(potluckid, newfood);
 
         // set the location header for the newly created resource
         HttpHeaders responseHeaders = new HttpHeaders();
         URI newFoodURI = ServletUriComponentsBuilder.fromCurrentRequest()
             .path("/{foodid}")
-            .buildAndExpand(newfood.getFoodid())
+            .buildAndExpand(newFood.getFoodid())
             .toUri();
         responseHeaders.setLocation(newFoodURI);
 
@@ -57,39 +57,4 @@ public class FoodController
             responseHeaders,
             HttpStatus.CREATED);
     }
-
-
-    // PATCH /foods/food/{foodid}/guest/{guestid}
-    // verify foodid exists
-    //      - if no, throw exception
-    // check if guestid exists
-    //      - if no, throw exception
-    // check if isclaimed is true or false
-    //      - if false, set to true
-    //          -> for guestid, add food to isbringing
-    //      - if true, return message "already claimed" fixme add exception
-//    @GetMapping(value = "/foods/food/{foodid}/claim/{guestid}")
-//    public ResponseEntity<?> claimFood(@PathVariable long foodid,
-//                                       @PathVariable long guestid)
-//    {
-//        foodService.claim(foodid, guestid);
-//        return new ResponseEntity<>(HttpStatus.OK);
-//    }
-
-    // GET /foods/food/{foodid}/unclaim/{guestid}
-    // verify foodid exists
-    //      - if no, throw exception
-    // check if guestid exists
-    //      - if no, throw exception
-    // check if isclaimed is true or false
-    //      - if true, set to false
-    //          -> for guestid, remove food from isbringing
-    //      - if false, return message "unclaimed"
-//    @GetMapping(value = "/foods/food/{foodid}/unclaim/{guestid}")
-//    public ResponseEntity<?> unclaimFood(@PathVariable long foodid,
-//                                       @PathVariable long guestid)
-//    {
-//        foodService.unclaim(foodid, guestid);
-//        return new ResponseEntity<>(HttpStatus.OK);
-//    }
 }

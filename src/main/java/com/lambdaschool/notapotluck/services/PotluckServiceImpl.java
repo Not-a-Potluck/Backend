@@ -111,13 +111,15 @@ public class PotluckServiceImpl implements PotluckService
         newPotluck.setLocation(potluck.getLocation());
         newPotluck.setDescription(potluck.getDescription());
 
+        // one to many
         newPotluck.getFoods().clear();
-        for (PotluckFoods fe : potluck.getFoods())
+        for (Food fe : potluck.getFoods())
         {
-            Food addFood = foodService.findFoodById(fe.getFood().getFoodid());
-            newPotluck.getFoods()
-                .add(new PotluckFoods(newPotluck,
-                    addFood));
+            Food newFood = new Food();
+            newFood.setFoodname(fe.getFoodname());
+            newFood.setPotluck(newPotluck);
+
+            newPotluck.getFoods().add(newFood);
         }
 
         newPotluck.getGuests().clear();
@@ -173,13 +175,11 @@ public class PotluckServiceImpl implements PotluckService
         if (potluck.getFoods().size() > 0)
         {
             currentPotluck.getFoods().clear();
-            for (PotluckFoods fe : potluck.getFoods())
+            for (Food fe : potluck.getFoods())
             {
-                Food addFood = foodService.findFoodById(fe.getFood().getFoodid());
-
                 currentPotluck.getFoods()
-                    .add(new PotluckFoods(currentPotluck,
-                        addFood));
+                    .add(new Food(currentPotluck,
+                        fe.getFoodname()));
             }
         }
 

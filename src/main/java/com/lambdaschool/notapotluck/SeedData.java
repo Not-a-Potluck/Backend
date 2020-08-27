@@ -49,13 +49,6 @@ public class SeedData implements CommandLineRunner
         Role r1 = new Role("user");
         r1 = roleService.save(r1);
 
-        Food f1 = new Food("pizza");
-        f1 = foodService.save(f1);
-        Food f2 = new Food("wine");
-        f2 = foodService.save(f2);
-        Food f3 = new Food("cheese board");
-        f3 = foodService.save(f3);
-
         Guest g1 = new Guest("Alex",
             "Thilen",
             "alex@alex.com");
@@ -86,12 +79,12 @@ public class SeedData implements CommandLineRunner
             "North side, look for red umbrella");
 //        PotluckGuests pg1 = new PotluckGuests(p1, g1);
 
-        Set<PotluckFoods> potluckFoods = new HashSet<>();
-        potluckFoods.add(new PotluckFoods(p1, f1));
+        p1.getFoods().add(new Food(p1,"pizza"));
+        p1.getFoods().add(new Food(p1,"salad"));
+
         Set<PotluckGuests> potluckGuests = new HashSet<>();
         potluckGuests.add(new PotluckGuests(p1, g1));
 
-        p1.setFoods(potluckFoods);
         p1.setGuests(potluckGuests);
         p1 = potluckService.save(p1);
 

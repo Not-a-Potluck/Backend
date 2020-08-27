@@ -22,23 +22,22 @@ public class Food extends Auditable
 //    public boolean hasvalueforisclaimed = false;
 //    private boolean isclaimed;
 
-//    /**
-//     Many to One relationship between foods and potlucks.
-//     A potluck can have many foods.
-//     */
-//    @ManyToOne
-//    @JoinColumn(name = "potluckid", nullable = false)
-//    @JsonIgnoreProperties(value = "foods", allowSetters = true)
-//    private Potluck potluck;
-
     /**
-     * connects food to the potluck food combination
+     potluck that this food is associated with
      */
-    @OneToMany(mappedBy = "food",
-        cascade = CascadeType.ALL,
-        orphanRemoval = true)
+    @ManyToOne
+    @JoinColumn(name = "potluckid", nullable = false)
     @JsonIgnoreProperties(value = "food", allowSetters = true)
-    private Set<PotluckFoods> potluckFoods = new HashSet<>();
+    private Potluck potluck;
+
+//    /**
+//     * connects food to the potluck food combination
+//     */
+//    @OneToMany(mappedBy = "food",
+//        cascade = CascadeType.ALL,
+//        orphanRemoval = true)
+//    @JsonIgnoreProperties(value = "food", allowSetters = true)
+//    private Set<PotluckFoods> potluckFoods = new HashSet<>();
 
 //    @OneToMany(mappedBy = "food",
 //        cascade = CascadeType.ALL,
@@ -51,12 +50,11 @@ public class Food extends Auditable
     }
 
     public Food(
-//        Potluck potluck,
+        Potluck potluck,
         String foodname)
     {
-//        this.potluck = potluck;
+        this.potluck = potluck;
         this.foodname = foodname;
-//        this.isclaimed = false;
     }
 
     public long getFoodid()
@@ -79,44 +77,13 @@ public class Food extends Auditable
         this.foodname = foodname;
     }
 
-//    public Potluck getPotluck()
-//    {
-//        return potluck;
-//    }
-//
-//    public void setPotluck(Potluck potluck)
-//    {
-//        this.potluck = potluck;
-//    }
-
-    //    public boolean isClaimed()
-//    {
-//        return isclaimed;
-//    }
-//
-//    public void setClaimed(boolean claimed)
-//    {
-//        hasvalueforisclaimed = true;
-//        isclaimed = claimed;
-//    }
-//
-//    public Guest getGuest()
-//    {
-//        return guest;
-//    }
-//
-//    public void setGuest(Guest guest)
-//    {
-//        this.guest = guest;
-//    }
-
-    public Set<PotluckFoods> getPotluckFoods()
+    public Potluck getPotluck()
     {
-        return potluckFoods;
+        return potluck;
     }
 
-    public void setPotluckFoods(Set<PotluckFoods> potlucks)
+    public void setPotluck(Potluck potluck)
     {
-        this.potluckFoods = potluckFoods;
+        this.potluck = potluck;
     }
 }

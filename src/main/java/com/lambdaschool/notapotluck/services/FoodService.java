@@ -7,7 +7,6 @@ import java.util.List;
 
 public interface FoodService
 {
-    Food save(Food food);
 
     public void deleteAll();
 
@@ -15,7 +14,9 @@ public interface FoodService
 
     List<Food> findAll();
 
-//    void addFood(Food newFood, Potluck potluck);
+    Food save(
+        long potluckid,
+        String foodname);
 
 //    Food claim(long foodid, long guestid);
 //
