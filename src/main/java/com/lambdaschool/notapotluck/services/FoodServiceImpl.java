@@ -22,15 +22,35 @@ public class FoodServiceImpl implements FoodService
     @Autowired
     PotluckService potluckService;
 
+//    @Override
+//    public void addFood(Food newFood, Potluck potluck) {
+//        long potluckid = newFood.getFoodid();
+//        Food addedFood = new Food();
+//        addedFood.setFoodname(newFood.getFoodname());
+//        newFood = foodrepos.save(addedFood);
+//    }
+
     // fixme add update
     @Transactional
     @Override
     public Food save(Food food)
     {
-        if (food.getPotlucks().size() > 0)
+        if (food.getPotluckFoods().size() > 0)
         {
             throw new EntityNotFoundException("Potluck foods are not updated through foods.");
         }
+
+        Food newFood = new Food();
+
+        if (food.getFoodid() != 0)
+        {
+            foodrepos.findById(food.getFoodid())
+                .orElseThrow(() -> new EntityNotFoundException("Food id " + food.getFoodid() + " not found!"));
+            newFood.setFoodid(food.getFoodid());
+        }
+//        Potluck currentPotluck = potluckService.findPotluckById(food.getPotluck().getPotluckid());
+//        newFood.setPotluck(currentPotluck);
+        newFood.setFoodname(food.getFoodname());
 
         return foodrepos.save(food);
     }

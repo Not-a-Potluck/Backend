@@ -54,6 +54,9 @@ public class ResourceServerConfig
                 "/createnewuser")
             .permitAll()
             .antMatchers("/users/**",
+                "/potlucks/**",
+                "/foods/**",
+                "/guests/**,",
                 "/oauth/revoke-token",
                 "/logout")
             .authenticated()

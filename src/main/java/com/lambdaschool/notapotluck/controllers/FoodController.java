@@ -3,6 +3,7 @@ package com.lambdaschool.notapotluck.controllers;
 import com.lambdaschool.notapotluck.models.Food;
 import com.lambdaschool.notapotluck.models.Potluck;
 import com.lambdaschool.notapotluck.services.FoodService;
+import com.lambdaschool.notapotluck.services.PotluckService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -21,6 +22,9 @@ public class FoodController
 {
     @Autowired
     FoodService foodService;
+
+    @Autowired
+    PotluckService potluckService;
 
     // GET http://localhost:2019/foods/foods
     @GetMapping(value = "/foods",
@@ -53,6 +57,7 @@ public class FoodController
             responseHeaders,
             HttpStatus.CREATED);
     }
+
 
     // PATCH /foods/food/{foodid}/guest/{guestid}
     // verify foodid exists

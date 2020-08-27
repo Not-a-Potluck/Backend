@@ -38,6 +38,15 @@ public class Potluck extends Auditable
     @JsonIgnoreProperties(value = "potlucks", allowSetters = true)
     private User user;
 
+//    /**
+//     Many to One relationship between potlucks and foods.
+//     A user can have many foods.
+//     */
+//    @ManyToOne
+//    @JoinColumn(name = "foodid", nullable = false)
+//    @JsonIgnoreProperties(value = "potlucks", allowSetters = true)
+//    private Food food;
+
     /**
      * connects potluck to the food potluck combination
      */
@@ -167,7 +176,7 @@ public class Potluck extends Auditable
         this.guests = guests;
     }
 
-//    public boolean isHost()
+    //    public boolean isHost()
 //    {
 //        return ishost;
 //    }

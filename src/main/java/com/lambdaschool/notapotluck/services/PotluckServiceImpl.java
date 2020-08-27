@@ -8,7 +8,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Transactional
 @Service(value = "potluckService")
@@ -173,9 +175,11 @@ public class PotluckServiceImpl implements PotluckService
             currentPotluck.getFoods().clear();
             for (PotluckFoods fe : potluck.getFoods())
             {
+                Food addFood = foodService.findFoodById(fe.getFood().getFoodid());
+
                 currentPotluck.getFoods()
                     .add(new PotluckFoods(currentPotluck,
-                        fe.getFood()));
+                        addFood));
             }
         }
 

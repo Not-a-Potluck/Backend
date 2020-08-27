@@ -23,13 +23,13 @@ public class Food extends Auditable
 //    private boolean isclaimed;
 
 //    /**
-//     Many to One relationship between foods and guests.
-//     A guest can have many foods.
+//     Many to One relationship between foods and potlucks.
+//     A potluck can have many foods.
 //     */
 //    @ManyToOne
-//    @JoinColumn(name = "guestid", nullable = false)
-//    @JsonIgnoreProperties(value = "food", allowSetters = true)
-//    private Guest guest;
+//    @JoinColumn(name = "potluckid", nullable = false)
+//    @JsonIgnoreProperties(value = "foods", allowSetters = true)
+//    private Potluck potluck;
 
     /**
      * connects food to the potluck food combination
@@ -38,7 +38,7 @@ public class Food extends Auditable
         cascade = CascadeType.ALL,
         orphanRemoval = true)
     @JsonIgnoreProperties(value = "food", allowSetters = true)
-    private Set<PotluckFoods> potlucks = new HashSet<>();
+    private Set<PotluckFoods> potluckFoods = new HashSet<>();
 
 //    @OneToMany(mappedBy = "food",
 //        cascade = CascadeType.ALL,
@@ -51,8 +51,10 @@ public class Food extends Auditable
     }
 
     public Food(
+//        Potluck potluck,
         String foodname)
     {
+//        this.potluck = potluck;
         this.foodname = foodname;
 //        this.isclaimed = false;
     }
@@ -77,7 +79,17 @@ public class Food extends Auditable
         this.foodname = foodname;
     }
 
-//    public boolean isClaimed()
+//    public Potluck getPotluck()
+//    {
+//        return potluck;
+//    }
+//
+//    public void setPotluck(Potluck potluck)
+//    {
+//        this.potluck = potluck;
+//    }
+
+    //    public boolean isClaimed()
 //    {
 //        return isclaimed;
 //    }
@@ -98,13 +110,13 @@ public class Food extends Auditable
 //        this.guest = guest;
 //    }
 
-    public Set<PotluckFoods> getPotlucks()
+    public Set<PotluckFoods> getPotluckFoods()
     {
-        return potlucks;
+        return potluckFoods;
     }
 
-    public void setPotlucks(Set<PotluckFoods> potlucks)
+    public void setPotluckFoods(Set<PotluckFoods> potlucks)
     {
-        this.potlucks = potlucks;
+        this.potluckFoods = potluckFoods;
     }
 }

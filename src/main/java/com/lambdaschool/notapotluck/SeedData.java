@@ -39,11 +39,12 @@ public class SeedData implements CommandLineRunner
     @Override
     public void run(String[] args) throws Exception
     {
-//        potluckService.deleteAll();
-//        foodService.deleteAll();
-//        guestService.deleteAll();
-//        roleService.deleteAll();
-//        userService.deleteAll();
+        // reset data
+        potluckService.deleteAll();
+        foodService.deleteAll();
+        guestService.deleteAll();
+        roleService.deleteAll();
+        userService.deleteAll();
 
         Role r1 = new Role("user");
         r1 = roleService.save(r1);
@@ -84,6 +85,7 @@ public class SeedData implements CommandLineRunner
             "Gasworks park",
             "North side, look for red umbrella");
 //        PotluckGuests pg1 = new PotluckGuests(p1, g1);
+
         Set<PotluckFoods> potluckFoods = new HashSet<>();
         potluckFoods.add(new PotluckFoods(p1, f1));
         Set<PotluckGuests> potluckGuests = new HashSet<>();
@@ -92,8 +94,8 @@ public class SeedData implements CommandLineRunner
         p1.setFoods(potluckFoods);
         p1.setGuests(potluckGuests);
         p1 = potluckService.save(p1);
-//
-//
+
+
 //        Potluck p2 = new Potluck(u1,
 //            "Halloween Party",
 //            "10/31/2020",
