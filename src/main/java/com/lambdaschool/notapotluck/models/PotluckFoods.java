@@ -70,7 +70,7 @@ public class PotluckFoods extends Auditable implements Serializable
         this.food = food;
     }
 
-//    public PotluckGuests getPotluckguest()
+    //    public PotluckGuests getPotluckguest()
 //    {
 //        return potluckguest;
 //    }
@@ -95,6 +95,7 @@ public class PotluckFoods extends Auditable implements Serializable
         PotluckFoods that = (PotluckFoods) o;
         return ((potluck == null) ? 0 : potluck.getPotluckid()) == ((that.potluck == null) ? 0 : that.potluck.getPotluckid()) &&
             ((food == null) ? 0 : food.getFoodid()) == ((that.food == null) ? 0 : that.food.getFoodid());
+//            ((user == null) ? 0 : user.getUserid()) == ((that.user == null) ? 0 : that.user.getUserid());
 //            ((potluckguest == null) ? 0 : potluckguest.getPotluckfoodslist()) == ((that.potluckguest == null) ? 0 : that.potluckguest.getPotluckfoodslist());
     }
 

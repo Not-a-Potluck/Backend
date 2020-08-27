@@ -13,7 +13,7 @@ public class Food extends Auditable
 {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @JsonIgnoreProperties("foodid")
+//    @JsonIgnoreProperties("foodid")
     private long foodid;
 
     private String foodname;

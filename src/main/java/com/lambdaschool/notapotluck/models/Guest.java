@@ -15,7 +15,7 @@ public class Guest extends Auditable
 {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @JsonIgnoreProperties("guestid")
+//    @JsonIgnoreProperties("guestid")
     private long guestid;
 
     private String fname;

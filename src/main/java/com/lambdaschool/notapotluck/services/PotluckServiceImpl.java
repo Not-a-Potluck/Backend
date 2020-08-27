@@ -20,6 +20,12 @@ public class PotluckServiceImpl implements PotluckService
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private FoodService foodService;
+
+    @Autowired
+    private GuestService guestService;
+
     @Override
     public List<Potluck> findAll()
     {
@@ -106,17 +112,19 @@ public class PotluckServiceImpl implements PotluckService
         newPotluck.getFoods().clear();
         for (PotluckFoods fe : potluck.getFoods())
         {
+            Food addFood = foodService.findFoodById(fe.getFood().getFoodid());
             newPotluck.getFoods()
                 .add(new PotluckFoods(newPotluck,
-                    fe.getFood()));
+                    addFood));
         }
 
         newPotluck.getGuests().clear();
         for (PotluckGuests ge : potluck.getGuests())
         {
+            Guest addGuest = guestService.findGuestById(ge.getGuest().getGuestid());
             newPotluck.getGuests()
                 .add(new PotluckGuests(newPotluck,
-                    ge.getGuest()));
+                    addGuest));
         }
 
         return potluckrepos.save(newPotluck);

@@ -8,4 +8,6 @@ public interface GuestService
     Guest save(Guest guest);
 
     public void deleteAll();
+
+    Guest findGuestById(long id);
 }

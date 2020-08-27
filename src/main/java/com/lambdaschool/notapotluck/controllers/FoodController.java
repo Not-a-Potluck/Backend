@@ -4,10 +4,15 @@ import com.lambdaschool.notapotluck.models.Food;
 import com.lambdaschool.notapotluck.models.Potluck;
 import com.lambdaschool.notapotluck.services.FoodService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.validation.Valid;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.List;
 
 @RestController
@@ -16,6 +21,38 @@ public class FoodController
 {
     @Autowired
     FoodService foodService;
+
+    // GET http://localhost:2019/foods/foods
+    @GetMapping(value = "/foods",
+        produces = "application/json")
+    public ResponseEntity<?> listFoods()
+    {
+        List<Food> allFoods = foodService.findAll();
+        return new ResponseEntity<>(allFoods,
+            HttpStatus.OK);
+    }
+
+    // POST http://localhost:2019/foods/food
+    @PostMapping(value = "/food")
+    public ResponseEntity<?> addNewFood(@Valid
+                                           @RequestBody
+                                               Food newfood) throws URISyntaxException
+    {
+        newfood.setFoodid(0);
+        newfood = foodService.save(newfood);
+
+        // set the location header for the newly created resource
+        HttpHeaders responseHeaders = new HttpHeaders();
+        URI newFoodURI = ServletUriComponentsBuilder.fromCurrentRequest()
+            .path("/{foodid}")
+            .buildAndExpand(newfood.getFoodid())
+            .toUri();
+        responseHeaders.setLocation(newFoodURI);
+
+        return new ResponseEntity<>(null,
+            responseHeaders,
+            HttpStatus.CREATED);
+    }
 
     // PATCH /foods/food/{foodid}/guest/{guestid}
     // verify foodid exists

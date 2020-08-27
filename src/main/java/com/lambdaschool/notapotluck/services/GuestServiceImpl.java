@@ -15,7 +15,7 @@ import javax.persistence.EntityNotFoundException;
 public class GuestServiceImpl implements GuestService
 {
     @Autowired
-    GuestRespository guestRespository;
+    GuestRespository guestrepos;
 
     @Transactional
     @Override
@@ -23,16 +23,23 @@ public class GuestServiceImpl implements GuestService
     {
         if (guest.getPotlucks().size() > 0)
         {
-            throw new EntityNotFoundException("Potluck foods are not updated through foods.");
+            throw new EntityNotFoundException("Potluck guests are not updated through guests.");
         }
 
-        return guestRespository.save(guest);
+        return guestrepos.save(guest);
     }
 
     @Transactional
     @Override
     public void deleteAll()
     {
-        guestRespository.deleteAll();
+        guestrepos.deleteAll();
+    }
+
+    @Override
+    public Guest findGuestById(long id)
+    {
+        return guestrepos.findById(id)
+            .orElseThrow(() -> new EntityNotFoundException("Guest id " + id + " not found!"));
     }
 }
