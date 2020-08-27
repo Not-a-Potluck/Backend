@@ -6,8 +6,6 @@ import java.util.List;
 
 public interface GuestService
 {
-//    Guest save(Guest guest);
-
     public void deleteAll();
 
     Guest findGuestById(long id);
@@ -19,4 +17,6 @@ public interface GuestService
         String fname,
         String lname,
         String primaryemail);
+
+    void delete(long id);
 }

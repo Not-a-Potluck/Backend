@@ -23,18 +23,6 @@ public class GuestServiceImpl implements GuestService
     @Autowired
     PotluckService potluckService;
 
-//    @Transactional
-//    @Override
-//    public Guest save(Guest guest)
-//    {
-//        if (guest.getPotlucks().size() > 0)
-//        {
-//            throw new EntityNotFoundException("Potluck guests are not updated through guests.");
-//        }
-//
-//        return guestrepos.save(guest);
-//    }
-
     @Transactional
     @Override
     public void deleteAll()
@@ -75,5 +63,14 @@ public class GuestServiceImpl implements GuestService
 
         Guest newGuest = new Guest(currentPotluck, fname, lname, primaryemail);
         return guestrepos.save(newGuest);
+    }
+
+    @Transactional
+    @Override
+    public void delete(long id)
+    {
+        guestrepos.findById(id)
+            .orElseThrow(() -> new EntityNotFoundException("Guest id " + id + " not found!"));
+        guestrepos.deleteById(id);
     }
 }

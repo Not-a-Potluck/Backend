@@ -59,6 +59,16 @@ public class GuestController
             HttpStatus.CREATED);
     }
 
+    // DELETE http://localhost:2019/guests/guest/{guestid}
+    @DeleteMapping(value = "/guest/{id}")
+    public ResponseEntity<?> deleteFoodById(
+        @PathVariable
+            long id)
+    {
+        guestService.delete(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
 //    // POST http://localhost:2019/guest/guest
 //    @PostMapping(value = "/guest")
 //    public ResponseEntity<?> addNewGuest(@Valid

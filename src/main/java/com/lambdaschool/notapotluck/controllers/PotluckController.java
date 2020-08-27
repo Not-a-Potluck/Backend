@@ -64,7 +64,7 @@ public class PotluckController
 
     // DELETE http://localhost:2019/potlucks/potluck/{potluckid}
     @DeleteMapping(value = "/potluck/{id}")
-    public ResponseEntity<?> deleteUserById(
+    public ResponseEntity<?> deletePotluckById(
         @PathVariable
             long id)
     {

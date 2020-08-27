@@ -20,23 +20,6 @@ public class FoodServiceImpl implements FoodService
     @Autowired
     PotluckService potluckService;
 
-//    @Override
-//    public void addFood(Food newFood, Potluck potluck) {
-//        long potluckid = newFood.getFoodid();
-//        Food addedFood = new Food();
-//        addedFood.setPotluck(potluck);
-//        addedFood.setFoodid(0);
-//        addedFood.setFoodname(newFood.getFoodname());
-//        newFood = foodrepos.save(addedFood);
-//    }
-
-//    // fixme add update
-//    @Override
-//    public Food save(long potluckid, Food food)
-//    {
-//        return null;
-//    }
-
     @Override
     public void deleteAll()
     {
@@ -74,5 +57,14 @@ public class FoodServiceImpl implements FoodService
 
         Food newFood = new Food(currentPotluck, foodname);
         return foodrepos.save(newFood);
+    }
+
+    @Transactional
+    @Override
+    public void delete(long id)
+    {
+        foodrepos.findById(id)
+            .orElseThrow(() -> new EntityNotFoundException("Food id " + id + " not found!"));
+        foodrepos.deleteById(id);
     }
 }

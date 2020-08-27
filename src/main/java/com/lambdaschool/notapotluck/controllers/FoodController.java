@@ -57,4 +57,14 @@ public class FoodController
             responseHeaders,
             HttpStatus.CREATED);
     }
+
+    // DELETE http://localhost:2019/foods/food/{foodid}
+    @DeleteMapping(value = "/food/{foodid}")
+    public ResponseEntity<?> deleteFoodById(
+        @PathVariable
+            long id)
+    {
+        foodService.delete(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }
