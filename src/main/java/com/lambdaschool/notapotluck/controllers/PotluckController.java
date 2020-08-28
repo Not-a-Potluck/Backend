@@ -32,26 +32,26 @@ public class PotluckController
     // POST http://localhost:2019/potlucks/potluck
     @PostMapping(value = "/potluck", consumes = "application/json")
     public ResponseEntity<?> addNewPotluck(@Valid
-                                        @RequestBody
-                                            Potluck newpotluck) throws URISyntaxException
+                                           @RequestBody
+                                                   Potluck newpotluck) throws URISyntaxException
     {
         newpotluck.setPotluckid(0);
         newpotluck = potluckService.save(newpotluck);
 
         // set the location header for the newly created resource
         HttpHeaders responseHeaders = new HttpHeaders();
-        URI newUserURI = ServletUriComponentsBuilder.fromCurrentRequest()
-            .path("/{potluckid}")
-            .buildAndExpand(newpotluck.getPotluckid())
+        URI newPotluckURI = ServletUriComponentsBuilder.fromCurrentRequest()
+            .path("/" + newpotluck.getPotluckid())
+            .build()
             .toUri();
-        responseHeaders.setLocation(newUserURI);
+        responseHeaders.setLocation(newPotluckURI);
 
         return new ResponseEntity<>(null,
             responseHeaders,
             HttpStatus.CREATED);
     }
 
-    // PUT POST http://localhost:2019/potlucks/potluck/{potluckid}
+    // PUT http://localhost:2019/potlucks/potluck/{potluckid}
     @PutMapping(value = "/potluck/{potluckid}", consumes = "application/json")
     public ResponseEntity<?> updateFullPotluck(@Valid @RequestBody Potluck updatePotluck,
                                             @PathVariable long potluckid)
@@ -64,7 +64,7 @@ public class PotluckController
 
     // DELETE http://localhost:2019/potlucks/potluck/{potluckid}
     @DeleteMapping(value = "/potluck/{id}")
-    public ResponseEntity<?> deleteUserById(
+    public ResponseEntity<?> deletePotluckById(
         @PathVariable
             long id)
     {

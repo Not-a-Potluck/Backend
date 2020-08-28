@@ -3,7 +3,9 @@ package com.lambdaschool.notapotluck.models;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -39,22 +41,40 @@ public class Potluck extends Auditable
     private User user;
 
     /**
-     * connects potluck to the food potluck combination
+     List of food items for this potluck
      */
     @OneToMany(mappedBy = "potluck",
         cascade = CascadeType.ALL,
         orphanRemoval = true)
     @JsonIgnoreProperties(value = "potluck", allowSetters = true)
-    private Set<PotluckFoods> foods = new HashSet<>();
+    private List<Food> foods = new ArrayList<>();
 
     /**
-     * connects potluck to the guest potluck combination
+     List of guests items for this potluck
      */
     @OneToMany(mappedBy = "potluck",
         cascade = CascadeType.ALL,
         orphanRemoval = true)
     @JsonIgnoreProperties(value = "potluck", allowSetters = true)
-    private Set<PotluckGuests> guests = new HashSet<>();
+    private List<Guest> guests = new ArrayList<>();
+
+//    /**
+//     * connects potluck to the food potluck combination
+//     */
+//    @OneToMany(mappedBy = "potluck",
+//        cascade = CascadeType.ALL,
+//        orphanRemoval = true)
+//    @JsonIgnoreProperties(value = "potluck", allowSetters = true)
+//    private Set<PotluckFoods> foods = new HashSet<>();
+
+//    /**
+//     * connects potluck to the guest potluck combination
+//     */
+//    @OneToMany(mappedBy = "potluck",
+//        cascade = CascadeType.ALL,
+//        orphanRemoval = true)
+//    @JsonIgnoreProperties(value = "potluck", allowSetters = true)
+//    private Set<PotluckGuests> guests = new HashSet<>();
 
     public Potluck()
     {
@@ -74,7 +94,6 @@ public class Potluck extends Auditable
         this.time = time;
         this.location = location;
         this.description = description;
-//        this.ishost = false;
     }
 
     public long getPotluckid()
@@ -147,34 +166,23 @@ public class Potluck extends Auditable
         this.user = user;
     }
 
-    public Set<PotluckFoods> getFoods()
+    public List<Food> getFoods()
     {
         return foods;
     }
 
-    public void setFoods(Set<PotluckFoods> foods)
+    public void setFoods(List<Food> foods)
     {
         this.foods = foods;
     }
 
-    public Set<PotluckGuests> getGuests()
+    public List<Guest> getGuests()
     {
         return guests;
     }
 
-    public void setGuests(Set<PotluckGuests> guests)
+    public void setGuests(List<Guest> guests)
     {
         this.guests = guests;
     }
-
-//    public boolean isHost()
-//    {
-//        return ishost;
-//    }
-//
-//    public void setHost(boolean host)
-//    {
-//        hasvalueforishost = true;
-//        ishost = host;
-//    }
 }

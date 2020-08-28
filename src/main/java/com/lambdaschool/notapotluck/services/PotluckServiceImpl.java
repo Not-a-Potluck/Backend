@@ -8,7 +8,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Transactional
 @Service(value = "potluckService")
@@ -16,6 +18,15 @@ public class PotluckServiceImpl implements PotluckService
 {
     @Autowired
     private PotluckRespository potluckrepos;
+
+    @Autowired
+    private UserService userService;
+
+    @Autowired
+    private FoodService foodService;
+
+    @Autowired
+    private GuestService guestService;
 
     @Override
     public List<Potluck> findAll()
@@ -92,29 +103,46 @@ public class PotluckServiceImpl implements PotluckService
                 .orElseThrow(() -> new EntityNotFoundException("Potluck id " + potluck.getPotluckid() + " not found!"));
             newPotluck.setPotluckid(potluck.getPotluckid());
         }
-
-        newPotluck.setUser(potluck.getUser());
+        User currentUser = userService.findUserById(potluck.getUser().getUserid());
+        newPotluck.setUser(currentUser);
         newPotluck.setEventname(potluck.getEventname());
         newPotluck.setDate(potluck.getDate());
         newPotluck.setTime(potluck.getTime());
         newPotluck.setLocation(potluck.getLocation());
         newPotluck.setDescription(potluck.getDescription());
 
+        // one to many
         newPotluck.getFoods().clear();
-        for (PotluckFoods fe : potluck.getFoods())
+        for (Food fe : potluck.getFoods())
         {
-            newPotluck.getFoods()
-                .add(new PotluckFoods(newPotluck,
-                    fe.getFood()));
+            Food newFood = new Food();
+            newFood.setFoodname(fe.getFoodname());
+            newFood.setPotluck(newPotluck);
+
+            newPotluck.getFoods().add(newFood);
         }
 
+        // one to many
         newPotluck.getGuests().clear();
-        for (PotluckGuests ge : potluck.getGuests())
+        for (Guest ge : potluck.getGuests())
         {
-            newPotluck.getGuests()
-                .add(new PotluckGuests(newPotluck,
-                    ge.getGuest()));
+            Guest newGuest = new Guest();
+            newGuest.setFname(ge.getFname());
+            newGuest.setLname(ge.getLname());
+            newGuest.setPrimaryemail(ge.getPrimaryemail());
+            newGuest.setPotluck(newPotluck);
+
+            newPotluck.getGuests().add(newGuest);
         }
+
+//        newPotluck.getGuests().clear();
+//        for (PotluckGuests ge : potluck.getGuests())
+//        {
+//            Guest addGuest = guestService.findGuestById(ge.getGuest().getGuestid());
+//            newPotluck.getGuests()
+//                .add(new PotluckGuests(newPotluck,
+//                    addGuest));
+//        }
 
         return potluckrepos.save(newPotluck);
     }
@@ -160,24 +188,37 @@ public class PotluckServiceImpl implements PotluckService
         if (potluck.getFoods().size() > 0)
         {
             currentPotluck.getFoods().clear();
-            for (PotluckFoods fe : potluck.getFoods())
+            for (Food fe : potluck.getFoods())
             {
                 currentPotluck.getFoods()
-                    .add(new PotluckFoods(currentPotluck,
-                        fe.getFood()));
+                    .add(new Food(currentPotluck,
+                        fe.getFoodname()));
             }
         }
 
         if (potluck.getGuests().size() > 0)
         {
             currentPotluck.getGuests().clear();
-            for (PotluckGuests ge : potluck.getGuests())
+            for (Guest ge : potluck.getGuests())
             {
                 currentPotluck.getGuests()
-                    .add(new PotluckGuests(currentPotluck,
-                        ge.getGuest()));
+                    .add(new Guest(currentPotluck,
+                        ge.getFname(),
+                        ge.getLname(),
+                        ge.getPrimaryemail()));
             }
         }
+
+//        if (potluck.getGuests().size() > 0)
+//        {
+//            currentPotluck.getGuests().clear();
+//            for (PotluckGuests ge : potluck.getGuests())
+//            {
+//                currentPotluck.getGuests()
+//                    .add(new PotluckGuests(currentPotluck,
+//                        ge.getGuest()));
+//            }
+//        }
 
         return potluckrepos.save(currentPotluck);
         //        } else

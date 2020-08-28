@@ -1,7 +1,6 @@
 package com.lambdaschool.notapotluck.services;
 
 import com.lambdaschool.notapotluck.models.Potluck;
-import com.lambdaschool.notapotluck.models.User;
 
 import java.util.List;
 

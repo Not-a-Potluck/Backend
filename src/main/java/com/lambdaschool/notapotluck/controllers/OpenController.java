@@ -69,11 +69,12 @@ public class OpenController
         newuser.setUsername(newminuser.getUsername());
         newuser.setPassword(newminuser.getPassword());
         newuser.setPrimaryemail(newminuser.getPrimaryemail());
+        newuser.setImageurl(newminuser.getImageurl());
 
         // add the default role of user
         Set<UserRoles> newRoles = new HashSet<>();
         newRoles.add(new UserRoles(newuser,
-            roleService.findByName("user")));
+            roleService.findByName("USER")));
         newuser.setRoles(newRoles);
 
         newuser = userService.save(newuser);
@@ -99,9 +100,9 @@ public class OpenController
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
         headers.setAccept(acceptableMediaTypes);
-        headers.setBasicAuth("lambda-client", "lambda-secret");
-//        headers.setBasicAuth(System.getenv("OAUTHCLIENTID"),
-//            System.getenv("OAUTHCLIENTSECRET"));
+//        headers.setBasicAuth("lambda-client", "lambda-secret");
+        headers.setBasicAuth(System.getenv("OAUTHCLIENTID"),
+            System.getenv("OAUTHCLIENTSECRET"));
 
         MultiValueMap<String, String> map = new LinkedMultiValueMap<>();
         map.add("grant_type",
@@ -112,6 +113,10 @@ public class OpenController
             newminuser.getUsername());
         map.add("password",
             newminuser.getPassword());
+        map.add("primaryemail",
+            newminuser.getPrimaryemail());
+        map.add("imageurl",
+            newminuser.getImageurl());
 
         HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<>(map,
             headers);
@@ -120,7 +125,7 @@ public class OpenController
             request,
             String.class);
 
-        return new ResponseEntity<>(theToken,
+        return new ResponseEntity<>(null,
             responseHeaders,
             HttpStatus.CREATED);
     }
