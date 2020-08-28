@@ -86,7 +86,7 @@ public class SeedData implements CommandLineRunner
         //        potluckGuests.add(new PotluckGuests(p1, g1));
 
         //        p1.setGuests(potluckGuests);
-        p1 = potluckService.save(u1.getUserid(), p1);
+//        p1 = potluckService.save(u1.getUserid(), p1);
 
 
         User u2 = new User("hannah",
@@ -109,6 +109,6 @@ public class SeedData implements CommandLineRunner
         p2.getGuests().add(new Guest(p1,"harry", "harry", "harry@harry.com"));
         p2.getGuests().add(new Guest(p1,"fatima", "fatima", "fatima@fatima.com"));
 
-        p2 = potluckService.save(u2.getUserid(), p2);
+//        p2 = potluckService.save(u2.getUserid(), p2);
     }
 }

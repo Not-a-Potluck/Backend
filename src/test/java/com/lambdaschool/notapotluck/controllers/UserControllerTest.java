@@ -120,10 +120,27 @@ public class UserControllerTest
     }
 
     @Test
-    public void getUserById()
+    public void getUserById() throws Exception
     {
+        String apiUrl = "/users/user/2";
 
+        Mockito.when(userService.findUserById(2))
+            .thenReturn(userList.get(1));
 
+        RequestBuilder rb = MockMvcRequestBuilders.get(apiUrl)
+            .accept(MediaType.APPLICATION_JSON);
+        MvcResult r = mockMvc.perform(rb)
+            .andReturn(); // this could throw an exception
+        String tr = r.getResponse()
+            .getContentAsString();
+
+        ObjectMapper mapper = new ObjectMapper();
+        String er = mapper.writeValueAsString(userList.get(1));
+
+        System.out.println("Expect: " + er);
+        System.out.println("Actual: " + tr);
+
+        assertEquals("Rest API Returns List", er, tr);
     }
 
     @Test
