@@ -13,7 +13,9 @@ public interface UserService
 
     User save(User user);
 
-    User update(UserMinimum user, long id);
+    User update(User user, long id);
 
     public void deleteAll();
+
+    User findByName(String name);
 }

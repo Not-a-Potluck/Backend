@@ -86,7 +86,7 @@ public class UserServiceImpl implements UserService
 
     @Transactional
     @Override
-    public User update(UserMinimum user, long id)
+    public User update(User user, long id)
     {
         User updateUser = userrepos.findById(id)
             .orElseThrow(() -> new EntityNotFoundException("User " + id + " not found!"));
@@ -158,5 +158,16 @@ public class UserServiceImpl implements UserService
     public void deleteAll()
     {
         userrepos.deleteAll();
+    }
+
+    @Override
+    public User findByName(String name)
+    {
+        User uu = userrepos.findByUsername(name.toLowerCase());
+        if (uu == null)
+        {
+            throw new EntityNotFoundException("Username " + name + " not found!");
+        }
+        return uu;
     }
 }
