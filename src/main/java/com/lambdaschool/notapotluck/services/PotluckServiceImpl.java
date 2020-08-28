@@ -91,19 +91,20 @@ public class PotluckServiceImpl implements PotluckService
 //        }
 //        return potluckrepos.save(newPotluck);
 //    }
+
     @Transactional
     @Override
-    public Potluck save(Potluck potluck)
+    public Potluck save(long userid, Potluck potluck)
     {
+//        if (potluck.getPotluckid() != 0)
+//        {
+//            potluckrepos.findById(potluck.getPotluckid())
+//                .orElseThrow(() -> new EntityNotFoundException("Potluck id " + potluck.getPotluckid() + " not found!"));
+//            newPotluck.setPotluckid(potluck.getPotluckid());
+//        }
+//        User currentUser = userService.findUserById(potluck.getUser().getUserid());
+        User currentUser = userService.findUserById(userid);
         Potluck newPotluck = new Potluck();
-
-        if (potluck.getPotluckid() != 0)
-        {
-            potluckrepos.findById(potluck.getPotluckid())
-                .orElseThrow(() -> new EntityNotFoundException("Potluck id " + potluck.getPotluckid() + " not found!"));
-            newPotluck.setPotluckid(potluck.getPotluckid());
-        }
-        User currentUser = userService.findUserById(potluck.getUser().getUserid());
         newPotluck.setUser(currentUser);
         newPotluck.setEventname(potluck.getEventname());
         newPotluck.setDate(potluck.getDate());
@@ -134,15 +135,6 @@ public class PotluckServiceImpl implements PotluckService
 
             newPotluck.getGuests().add(newGuest);
         }
-
-//        newPotluck.getGuests().clear();
-//        for (PotluckGuests ge : potluck.getGuests())
-//        {
-//            Guest addGuest = guestService.findGuestById(ge.getGuest().getGuestid());
-//            newPotluck.getGuests()
-//                .add(new PotluckGuests(newPotluck,
-//                    addGuest));
-//        }
 
         return potluckrepos.save(newPotluck);
     }

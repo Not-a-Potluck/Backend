@@ -1,6 +1,8 @@
 package com.lambdaschool.notapotluck.services;
 
+import com.lambdaschool.notapotluck.models.Food;
 import com.lambdaschool.notapotluck.models.Potluck;
+import com.lambdaschool.notapotluck.models.User;
 
 import java.util.List;
 
@@ -10,7 +12,7 @@ public interface PotluckService
 
     Potluck findPotluckById(long id);
 
-    Potluck save(Potluck potluck);
+    Potluck save(long userid, Potluck potluck);
 
     Potluck update(Potluck potluck, long id);
 

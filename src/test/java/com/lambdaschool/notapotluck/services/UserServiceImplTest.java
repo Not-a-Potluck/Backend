@@ -52,7 +52,7 @@ public class UserServiceImplTest
     @Test
     public void findAll()
     {
-        assertEquals(1, userService.findAll()
+        assertEquals(2, userService.findAll()
             .size());
     }
 
