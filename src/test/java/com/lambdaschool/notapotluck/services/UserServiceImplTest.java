@@ -37,11 +37,11 @@ public class UserServiceImplTest
     {
         MockitoAnnotations.initMocks(this);
 
-//        List<User> myList = userService.findAll();
-//        for (User u : myList)
-//        {
-//            System.out.println(u.getUserid() + "" + u.getUsername());
-//        }
+        List<User> myList = userService.findAll();
+        for (User u : myList)
+        {
+            System.out.println(u.getUserid() + "" + u.getUsername());
+        }
     }
 
     @After
@@ -52,7 +52,7 @@ public class UserServiceImplTest
     @Test
     public void findAll()
     {
-        assertEquals(1, userService.findAll()
+        assertEquals(2, userService.findAll()
             .size());
     }
 
