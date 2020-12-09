@@ -62,7 +62,6 @@ A event organization app where users can create an event, invite guests, and add
 }
 ```
 
-</details>
 <summary>http://localhost:2019/potlucks/potluck/{potluckid}</summary>
 
 ```JSON
