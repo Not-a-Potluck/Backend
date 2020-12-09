@@ -50,8 +50,9 @@ A event organization app where users can create an event, invite guests, and add
 
 [Architecture Diagram](tbd)
 
+#### POST
+
 <details>
-  POST
 <summary>http://localhost:2019/createnewuser</summary>
   
 ```JSON
@@ -66,12 +67,11 @@ A event organization app where users can create an event, invite guests, and add
 </details>
 
 <details>
-  POST
 <summary>http://localhost:2019/potlucks/user/{userid}/potluck</summary>
   
 ```JSON
 {
-  "user": {"userid": {id}},
+  "user": {"userid": 2},
   "eventname": "test",
   "date": "09/01/2020",
   "time": "11:30am",
@@ -83,12 +83,11 @@ A event organization app where users can create an event, invite guests, and add
 </details>
 
 <details>
-  POST
 <summary>http://localhost:2019/foods/potluck/{potluckid}/food/{foodname}</summary>
   
 ```JSON
 {
-  "potluck": {"potluckid": {potluckidid},
+  "potluck": {"potluckid": 5,
   "foodname":"test"
 }
 ```
