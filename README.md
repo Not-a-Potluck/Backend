@@ -34,8 +34,8 @@ A event organization app where users can create an event, invite guests, and add
 | [Samantha Dutcher](https://github.com/Samantha-Dutcher1986)                                                                                                                     |
 |-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | [<img src="https://avatars2.githubusercontent.com/u/68967583?s=460&u=ccb7bbd7643ed7994f0d2882eca812a9968968b1&v=4" width = "200" />](https://github.com/Samantha-Dutcher1986) | 
-|                                       [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Samantha-Dutcher1986)                                       |   
-                    [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/samantha-dutcher-1580951b4/)                   |
+|                                       [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Samantha-Dutcher1986)                                       |
+|                     [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/samantha-dutcher-1580951b4/)                     |
       
 <br>
 
