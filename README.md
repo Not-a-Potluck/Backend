@@ -1,7 +1,4 @@
-<img src="https://images.unsplash.com/photo-1575879911904-ca5d889c6c7e?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&w=4800" height = "200" />
-<div style="height: 78px; width: 78px; font-size: 78px; line-height: 1.1; margin-left: 0px; color: black;"><span role="image" aria-label="🥘" style="font-family: &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji, &quot;Noto Color Emoji&quot;, &quot;Segoe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols; line-height: 1em;">🥘</span></div>
-
-# <div style="height: 78px; width: 78px; font-size: 78px; line-height: 1.1; margin-left: 0px; color: black;"><span role="image" aria-label="🥘" style="font-family: &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji, &quot;Noto Color Emoji&quot;, &quot;Segoe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols; line-height: 1em;">🥘</span></div> Not-a-Potluck Back End Product Overview
+# Not-a-Potluck Back End Product Overview <div style="height: 78px; width: 78px; font-size: 78px; line-height: 1.1; margin-left: 0px; color: black;"><span role="image" aria-label="🥘" style="font-family: &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji, &quot;Noto Color Emoji&quot;, &quot;Segoe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols; line-height: 1em;">🥘</span></div>
 
 A event organization app where users can create an event, invite guests, and add food items which guest can then claim!
 
