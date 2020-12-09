@@ -50,6 +50,649 @@ A event organization app where users can create an event, invite guests, and add
 
 [Architecture Diagram](tbd)
 
+
+#### GET
+
+<details>
+<summary>http://localhost:2019/users/user/2</summary>
+  
+```JSON
+
+{
+    "userid": 2,
+    "username": "laurenemick",
+    "primaryemail": "lauren@lauren.com",
+    "imageurl": null,
+    "potlucks": [
+        {
+            "potluckid": 3,
+            "eventname": "Lunch at Gasworks",
+            "date": "09/01/2020",
+            "time": "11:30am",
+            "location": "Gasworks park",
+            "description": "North side, look for red umbrella",
+            "foods": [
+                {
+                    "foodid": 4,
+                    "foodname": "pizza"
+                },
+                {
+                    "foodid": 5,
+                    "foodname": "salad"
+                }
+            ],
+            "guests": [
+                {
+                    "guestid": 6,
+                    "fname": "Alex",
+                    "lname": "Thilen",
+                    "primaryemail": "alex@alex.com",
+                    "responded": false,
+                    "attending": false
+                },
+                {
+                    "guestid": 7,
+                    "fname": "Adrienne",
+                    "lname": "Emick",
+                    "primaryemail": "adj@adj.com",
+                    "responded": false,
+                    "attending": false
+                }
+            ]
+        }
+    ],
+    "roles": [
+        {
+            "role": {
+                "roleid": 1,
+                "name": "USER"
+            }
+        }
+    ]
+}
+```
+
+</details>
+
+<details>
+<summary>http://localhost:2019/potlucks/potlucks</summary>
+  
+```JSON
+[
+    {
+        "potluckid": 3,
+        "eventname": "Lunch at Gasworks",
+        "date": "09/01/2020",
+        "time": "11:30am",
+        "location": "Gasworks park",
+        "description": "North side, look for red umbrella",
+        "user": {
+            "userid": 2,
+            "username": "laurenemick",
+            "primaryemail": "lauren@lauren.com",
+            "imageurl": null,
+            "roles": [
+                {
+                    "role": {
+                        "roleid": 1,
+                        "name": "USER"
+                    }
+                }
+            ]
+        },
+        "foods": [
+            {
+                "foodid": 4,
+                "foodname": "pizza"
+            },
+            {
+                "foodid": 5,
+                "foodname": "salad"
+            }
+        ],
+        "guests": [
+            {
+                "guestid": 6,
+                "fname": "Alex",
+                "lname": "Thilen",
+                "primaryemail": "alex@alex.com",
+                "responded": false,
+                "attending": false
+            },
+            {
+                "guestid": 7,
+                "fname": "Adrienne",
+                "lname": "Emick",
+                "primaryemail": "adj@adj.com",
+                "responded": false,
+                "attending": false
+            }
+        ]
+    },
+    {
+        "potluckid": 9,
+        "eventname": "Halloween Party",
+        "date": "10/31/2020",
+        "time": "4:00pm",
+        "location": "1111 90th pl ne, Seattle WA",
+        "description": "Black and orange balloons by gate",
+        "user": {
+            "userid": 8,
+            "username": "hannah",
+            "primaryemail": "hannah@hannah.com",
+            "imageurl": null,
+            "roles": [
+                {
+                    "role": {
+                        "roleid": 1,
+                        "name": "USER"
+                    }
+                }
+            ]
+        },
+        "foods": [
+            {
+                "foodid": 10,
+                "foodname": "burgers"
+            },
+            {
+                "foodid": 11,
+                "foodname": "salad"
+            }
+        ],
+        "guests": [
+            {
+                "guestid": 12,
+                "fname": "harry",
+                "lname": "harry",
+                "primaryemail": "harry@harry.com",
+                "responded": false,
+                "attending": false
+            },
+            {
+                "guestid": 13,
+                "fname": "fatima",
+                "lname": "fatima",
+                "primaryemail": "fatima@fatima.com",
+                "responded": false,
+                "attending": false
+            }
+        ]
+    }
+]
+```
+
+</details>
+
+<details>
+<summary>http://localhost:2019/guests/guests</summary>
+  
+```JSON
+
+[
+    {
+        "guestid": 6,
+        "fname": "Alex",
+        "lname": "Thilen",
+        "primaryemail": "alex@alex.com",
+        "responded": false,
+        "attending": false,
+        "potluck": {
+            "potluckid": 3,
+            "eventname": "Lunch at Gasworks",
+            "date": "09/01/2020",
+            "time": "11:30am",
+            "location": "Gasworks park",
+            "description": "North side, look for red umbrella",
+            "user": {
+                "userid": 2,
+                "username": "laurenemick",
+                "primaryemail": "lauren@lauren.com",
+                "imageurl": null,
+                "roles": [
+                    {
+                        "role": {
+                            "roleid": 1,
+                            "name": "USER"
+                        }
+                    }
+                ]
+            },
+            "foods": [
+                {
+                    "foodid": 4,
+                    "foodname": "pizza"
+                },
+                {
+                    "foodid": 5,
+                    "foodname": "salad"
+                }
+            ],
+            "guests": [
+                {
+                    "guestid": 6,
+                    "fname": "Alex",
+                    "lname": "Thilen",
+                    "primaryemail": "alex@alex.com",
+                    "responded": false,
+                    "attending": false
+                },
+                {
+                    "guestid": 7,
+                    "fname": "Adrienne",
+                    "lname": "Emick",
+                    "primaryemail": "adj@adj.com",
+                    "responded": false,
+                    "attending": false
+                }
+            ]
+        }
+    },
+    {
+        "guestid": 7,
+        "fname": "Adrienne",
+        "lname": "Emick",
+        "primaryemail": "adj@adj.com",
+        "responded": false,
+        "attending": false,
+        "potluck": {
+            "potluckid": 3,
+            "eventname": "Lunch at Gasworks",
+            "date": "09/01/2020",
+            "time": "11:30am",
+            "location": "Gasworks park",
+            "description": "North side, look for red umbrella",
+            "user": {
+                "userid": 2,
+                "username": "laurenemick",
+                "primaryemail": "lauren@lauren.com",
+                "imageurl": null,
+                "roles": [
+                    {
+                        "role": {
+                            "roleid": 1,
+                            "name": "USER"
+                        }
+                    }
+                ]
+            },
+            "foods": [
+                {
+                    "foodid": 4,
+                    "foodname": "pizza"
+                },
+                {
+                    "foodid": 5,
+                    "foodname": "salad"
+                }
+            ],
+            "guests": [
+                {
+                    "guestid": 6,
+                    "fname": "Alex",
+                    "lname": "Thilen",
+                    "primaryemail": "alex@alex.com",
+                    "responded": false,
+                    "attending": false
+                },
+                {
+                    "guestid": 7,
+                    "fname": "Adrienne",
+                    "lname": "Emick",
+                    "primaryemail": "adj@adj.com",
+                    "responded": false,
+                    "attending": false
+                }
+            ]
+        }
+    },
+    {
+        "guestid": 12,
+        "fname": "harry",
+        "lname": "harry",
+        "primaryemail": "harry@harry.com",
+        "responded": false,
+        "attending": false,
+        "potluck": {
+            "potluckid": 9,
+            "eventname": "Halloween Party",
+            "date": "10/31/2020",
+            "time": "4:00pm",
+            "location": "1111 90th pl ne, Seattle WA",
+            "description": "Black and orange balloons by gate",
+            "user": {
+                "userid": 8,
+                "username": "hannah",
+                "primaryemail": "hannah@hannah.com",
+                "imageurl": null,
+                "roles": [
+                    {
+                        "role": {
+                            "roleid": 1,
+                            "name": "USER"
+                        }
+                    }
+                ]
+            },
+            "foods": [
+                {
+                    "foodid": 10,
+                    "foodname": "burgers"
+                },
+                {
+                    "foodid": 11,
+                    "foodname": "salad"
+                }
+            ],
+            "guests": [
+                {
+                    "guestid": 12,
+                    "fname": "harry",
+                    "lname": "harry",
+                    "primaryemail": "harry@harry.com",
+                    "responded": false,
+                    "attending": false
+                },
+                {
+                    "guestid": 13,
+                    "fname": "fatima",
+                    "lname": "fatima",
+                    "primaryemail": "fatima@fatima.com",
+                    "responded": false,
+                    "attending": false
+                }
+            ]
+        }
+    },
+    {
+        "guestid": 13,
+        "fname": "fatima",
+        "lname": "fatima",
+        "primaryemail": "fatima@fatima.com",
+        "responded": false,
+        "attending": false,
+        "potluck": {
+            "potluckid": 9,
+            "eventname": "Halloween Party",
+            "date": "10/31/2020",
+            "time": "4:00pm",
+            "location": "1111 90th pl ne, Seattle WA",
+            "description": "Black and orange balloons by gate",
+            "user": {
+                "userid": 8,
+                "username": "hannah",
+                "primaryemail": "hannah@hannah.com",
+                "imageurl": null,
+                "roles": [
+                    {
+                        "role": {
+                            "roleid": 1,
+                            "name": "USER"
+                        }
+                    }
+                ]
+            },
+            "foods": [
+                {
+                    "foodid": 10,
+                    "foodname": "burgers"
+                },
+                {
+                    "foodid": 11,
+                    "foodname": "salad"
+                }
+            ],
+            "guests": [
+                {
+                    "guestid": 12,
+                    "fname": "harry",
+                    "lname": "harry",
+                    "primaryemail": "harry@harry.com",
+                    "responded": false,
+                    "attending": false
+                },
+                {
+                    "guestid": 13,
+                    "fname": "fatima",
+                    "lname": "fatima",
+                    "primaryemail": "fatima@fatima.com",
+                    "responded": false,
+                    "attending": false
+                }
+            ]
+        }
+    }
+]
+```
+
+</details>
+
+<details>
+<summary>http://localhost:2019/foods/foods</summary>
+  
+```JSON
+[
+    {
+        "foodid": 4,
+        "foodname": "pizza",
+        "potluck": {
+            "potluckid": 3,
+            "eventname": "Lunch at Gasworks",
+            "date": "09/01/2020",
+            "time": "11:30am",
+            "location": "Gasworks park",
+            "description": "North side, look for red umbrella",
+            "user": {
+                "userid": 2,
+                "username": "laurenemick",
+                "primaryemail": "lauren@lauren.com",
+                "imageurl": null,
+                "roles": [
+                    {
+                        "role": {
+                            "roleid": 1,
+                            "name": "USER"
+                        }
+                    }
+                ]
+            },
+            "foods": [
+                {
+                    "foodid": 4,
+                    "foodname": "pizza"
+                },
+                {
+                    "foodid": 5,
+                    "foodname": "salad"
+                }
+            ],
+            "guests": [
+                {
+                    "guestid": 6,
+                    "fname": "Alex",
+                    "lname": "Thilen",
+                    "primaryemail": "alex@alex.com",
+                    "responded": false,
+                    "attending": false
+                },
+                {
+                    "guestid": 7,
+                    "fname": "Adrienne",
+                    "lname": "Emick",
+                    "primaryemail": "adj@adj.com",
+                    "responded": false,
+                    "attending": false
+                }
+            ]
+        }
+    },
+    {
+        "foodid": 5,
+        "foodname": "salad",
+        "potluck": {
+            "potluckid": 3,
+            "eventname": "Lunch at Gasworks",
+            "date": "09/01/2020",
+            "time": "11:30am",
+            "location": "Gasworks park",
+            "description": "North side, look for red umbrella",
+            "user": {
+                "userid": 2,
+                "username": "laurenemick",
+                "primaryemail": "lauren@lauren.com",
+                "imageurl": null,
+                "roles": [
+                    {
+                        "role": {
+                            "roleid": 1,
+                            "name": "USER"
+                        }
+                    }
+                ]
+            },
+            "foods": [
+                {
+                    "foodid": 4,
+                    "foodname": "pizza"
+                },
+                {
+                    "foodid": 5,
+                    "foodname": "salad"
+                }
+            ],
+            "guests": [
+                {
+                    "guestid": 6,
+                    "fname": "Alex",
+                    "lname": "Thilen",
+                    "primaryemail": "alex@alex.com",
+                    "responded": false,
+                    "attending": false
+                },
+                {
+                    "guestid": 7,
+                    "fname": "Adrienne",
+                    "lname": "Emick",
+                    "primaryemail": "adj@adj.com",
+                    "responded": false,
+                    "attending": false
+                }
+            ]
+        }
+    },
+    {
+        "foodid": 10,
+        "foodname": "burgers",
+        "potluck": {
+            "potluckid": 9,
+            "eventname": "Halloween Party",
+            "date": "10/31/2020",
+            "time": "4:00pm",
+            "location": "1111 90th pl ne, Seattle WA",
+            "description": "Black and orange balloons by gate",
+            "user": {
+                "userid": 8,
+                "username": "hannah",
+                "primaryemail": "hannah@hannah.com",
+                "imageurl": null,
+                "roles": [
+                    {
+                        "role": {
+                            "roleid": 1,
+                            "name": "USER"
+                        }
+                    }
+                ]
+            },
+            "foods": [
+                {
+                    "foodid": 10,
+                    "foodname": "burgers"
+                },
+                {
+                    "foodid": 11,
+                    "foodname": "salad"
+                }
+            ],
+            "guests": [
+                {
+                    "guestid": 12,
+                    "fname": "harry",
+                    "lname": "harry",
+                    "primaryemail": "harry@harry.com",
+                    "responded": false,
+                    "attending": false
+                },
+                {
+                    "guestid": 13,
+                    "fname": "fatima",
+                    "lname": "fatima",
+                    "primaryemail": "fatima@fatima.com",
+                    "responded": false,
+                    "attending": false
+                }
+            ]
+        }
+    },
+    {
+        "foodid": 11,
+        "foodname": "salad",
+        "potluck": {
+            "potluckid": 9,
+            "eventname": "Halloween Party",
+            "date": "10/31/2020",
+            "time": "4:00pm",
+            "location": "1111 90th pl ne, Seattle WA",
+            "description": "Black and orange balloons by gate",
+            "user": {
+                "userid": 8,
+                "username": "hannah",
+                "primaryemail": "hannah@hannah.com",
+                "imageurl": null,
+                "roles": [
+                    {
+                        "role": {
+                            "roleid": 1,
+                            "name": "USER"
+                        }
+                    }
+                ]
+            },
+            "foods": [
+                {
+                    "foodid": 10,
+                    "foodname": "burgers"
+                },
+                {
+                    "foodid": 11,
+                    "foodname": "salad"
+                }
+            ],
+            "guests": [
+                {
+                    "guestid": 12,
+                    "fname": "harry",
+                    "lname": "harry",
+                    "primaryemail": "harry@harry.com",
+                    "responded": false,
+                    "attending": false
+                },
+                {
+                    "guestid": 13,
+                    "fname": "fatima",
+                    "lname": "fatima",
+                    "primaryemail": "fatima@fatima.com",
+                    "responded": false,
+                    "attending": false
+                }
+            ]
+        }
+    }
+]
+```
+
+</details>
+
 #### POST
 
 <details>
@@ -67,7 +710,7 @@ A event organization app where users can create an event, invite guests, and add
 </details>
 
 <details>
-<summary>http://localhost:2019/potlucks/user/{userid}/potluck</summary>
+<summary>http://localhost:2019/potlucks/user/2/potluck</summary>
   
 ```JSON
 {
@@ -83,13 +726,79 @@ A event organization app where users can create an event, invite guests, and add
 </details>
 
 <details>
-<summary>http://localhost:2019/foods/potluck/{potluckid}/food/{foodname}</summary>
+<summary>http://localhost:2019/foods/potluck/9/food/test</summary>
   
 ```JSON
 {
-  "potluck": {"potluckid": 5},
+  "potluck": {"potluckid": 9},
   "foodname":"test"
 }
+```
+
+</details>
+
+<details>
+<summary>http://localhost:2019/guests/potluck/9/guest/test/test/test@test.com</summary>
+  
+```JSON
+{
+"potluck": {"potluckid": 9},
+"fname": "test",
+"lname": "test",
+"primaryemail": "test@test.com"
+}
+```
+
+</details>
+
+#### PUT
+
+<details>
+<summary>http://localhost:2019/users/user/2</summary>
+  
+```JSON
+{
+    "username": "laurenemick",
+    "password": "password",
+    "primaryemail": "lauren@emick.com",
+    "imageurl": null
+}
+```
+
+</details>
+
+#### DELETE
+
+<details>
+<summary>http://localhost:2019/potlucks/potluck/9</summary>
+  
+```JSON
+No Body Data
+
+Status OK
+```
+
+</details>
+
+<details>
+  Doesn't work
+<summary>http://localhost:2019/foods/food/14</summary>
+  
+```JSON
+No Body Data
+
+Status OK
+```
+
+</details>
+
+<details>
+<summary>http://localhost:2019/guests/guest/13</summary>
+  
+```JSON
+No Body Data
+
+Status OK
 ```
 
 </details>
