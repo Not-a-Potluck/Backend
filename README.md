@@ -52,7 +52,6 @@ A event organization app where users can create an event, invite guests, and add
 
 <details>
 <summary>http://localhost:2019/createnewuser</summary>
-
 ```JSON
 {
   "username": "ava",
@@ -61,9 +60,10 @@ A event organization app where users can create an event, invite guests, and add
   "imageurl": "https://avatars1.githubusercontent.com/u/64428775?s=460&u=b978293f3ab12800a3f6d3caf917e22fe4de55a1&v=4"
 }
 ```
-
+</details>
+  
+<details>
 <summary>http://localhost:2019/potlucks/potluck/{potluckid}</summary>
-
 ```JSON
 {
 "user": {"userid": 2},
@@ -75,5 +75,4 @@ A event organization app where users can create an event, invite guests, and add
 }
 }
 ```
-
 </details>
