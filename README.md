@@ -2,15 +2,13 @@
 
 A event organization app where users can create an event, invite guests, and add food items which guest can then claim!
 
-### Key Features
-
 ## Base URL
 - https://lre-notapotluck.herokuapp.com/
 
 ## Swagger Documentation
 - tbd
 
-# Contributors
+## Contributors
 
 | [Harry Gebel](https://github.com/HarryHenryGebel)                                                                                                                     | [Josh Glantz](https://github.com/Jahteo)                                                                                                                     | [Lauren Emick](https://github.com/laurenemick)                                                                                                                     | [Ava Wingfield](https://github.com/avawing)                                                                                                                     |  
 |-----------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -25,21 +23,20 @@ A event organization app where users can create an event, invite guests, and add
       
 <br>
 
-# APIs
+## APIs
 
-#### [Front End](https://not-a-potluck.gebel.tech/)
+#### [Front End](https://not-a-potluck.gebel.tech/) deployed via netlify
 
 #### [Back End](https://lre-notapotluck.herokuapp.com/) deployed via Heroku
 
-### Tech Stack
-
-#### Java
-#### Spring Boot
-#### JUnit 4
-#### PostgreSQL
-#### OAuth2
-#### Swagger
-#### Maven
+## Tech Stack
+- Java
+- Spring Boot
+- JUnit 4
+- PostgreSQL
+- OAuth2
+- Swagger
+- Maven
 
 ## Architecture
 
