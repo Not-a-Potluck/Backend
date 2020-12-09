@@ -31,12 +31,6 @@ A event organization app where users can create an event, invite guests, and add
       
 <br>
 
-## APIs
-
-#### [Front End](https://not-a-potluck.gebel.tech/) deployed via netlify
-
-#### [Back End](https://lre-notapotluck.herokuapp.com/) deployed via Heroku
-
 ## Tech Stack
 - Java
 - Spring Boot
@@ -46,10 +40,13 @@ A event organization app where users can create an event, invite guests, and add
 - Swagger
 - Maven
 
-## Architecture
+## APIs
 
-[Architecture Diagram](tbd)
+#### [Front End](https://not-a-potluck.gebel.tech/) deployed via netlify
 
+#### [Back End](https://lre-notapotluck.herokuapp.com/) deployed via Heroku
+
+## Endpoints
 
 #### GET
 
