@@ -5,9 +5,6 @@ A event organization app where users can create an event, invite guests, and add
 ## Base URL
 - https://lre-notapotluck.herokuapp.com/
 
-## Swagger Documentation
-- tbd
-
 ## Contributors
 
 | [Harry Gebel](https://github.com/HarryHenryGebel)                                                                                                                     | [Josh Glantz](https://github.com/Jahteo)                                                                                                                     | [Lauren Emick](https://github.com/laurenemick)                                                                                                                     | [Ava Wingfield](https://github.com/avawing)                                                                                                                     |  
@@ -43,10 +40,14 @@ A event organization app where users can create an event, invite guests, and add
 [Architecture Diagram](tbd)
 
 <details>
-<summary>http://localhost:2019/cities/city/4</summary>
+<summary>http://localhost:2019/createnewuser</summary>
 
 ```JSON
 {
+  "username": "ava",
+  "password": "password",
+  "primaryemail": "ava@ava.com",
+  "imageurl": "https://avatars1.githubusercontent.com/u/64428775?s=460&u=b978293f3ab12800a3f6d3caf917e22fe4de55a1&v=4"
 }
 ```
 
