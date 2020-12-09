@@ -1,4 +1,4 @@
-# Not-a-Potluck Back End Product Overview <span role="image" aria-label="🥘" style="font-family: &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji, &quot;Noto Color Emoji&quot;, &quot;Segoe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols; line-height: 1em;">🥘</span>
+# <span role="image" aria-label="🥘" style="font-family: &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji, &quot;Noto Color Emoji&quot;, &quot;Segoe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols; line-height: 1em;">🥘</span> Not-a-Potluck Back End Product Overview
 
 A event organization app where users can create an event, invite guests, and add food items which guest can then claim!
 
