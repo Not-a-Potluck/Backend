@@ -87,7 +87,7 @@ A event organization app where users can create an event, invite guests, and add
   
 ```JSON
 {
-  "potluck": {"potluckid": 5,
+  "potluck": {"potluckid": 5},
   "foodname":"test"
 }
 ```
