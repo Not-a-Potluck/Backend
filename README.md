@@ -781,18 +781,6 @@ Status OK
 </details>
 
 <details>
-  Doesn't work
-<summary>http://localhost:2019/foods/food/14</summary>
-  
-```JSON
-No Body Data
-
-Status OK
-```
-
-</details>
-
-<details>
 <summary>http://localhost:2019/guests/guest/13</summary>
   
 ```JSON
