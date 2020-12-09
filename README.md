@@ -1,3 +1,5 @@
+[<img src="https://images.unsplash.com/photo-1575879911904-ca5d889c6c7e?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&w=4800" height = "200" />]
+
 # Not-a-Potluck Back End Product Overview
 
 A event organization app where users can create an event, invite guests, and add food items which guest can then claim!
